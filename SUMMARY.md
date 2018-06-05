@@ -1,4 +1,4 @@
 # Table of contents
 
-* Wap The Hack!!
+* [Wap The Hack!!](README.md)
 
