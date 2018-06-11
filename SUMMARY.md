@@ -5,4 +5,5 @@
 ## Conference
 
 * [18.06.05](conference-1/18.06.05.md)
+* [18.06.11](conference-1/18.06.11.md)
 
