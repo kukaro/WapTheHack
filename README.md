@@ -1,9 +1,6 @@
 ---
-description: nothing
+description: Preparing for the hackathon
 ---
 
 # Wap The Hack!!
 
-## 180605
-
-1. 
