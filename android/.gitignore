@@ -139,6 +139,11 @@ fabric.properties
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
-
+Icon\r
 
 # End of https://www.gitignore.io/api/androidstudio
+# REMINDER: do not edit Icon^M^M Carriage Returns
+Icon
+# REMINDER: do not edit Icon^M^M Carriage Returns
+Icon
+# END REMINDER
