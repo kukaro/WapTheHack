@@ -13,6 +13,7 @@
 * [18.07.11](conference/18.07.11.md)
 * [18.07.17](conference/18.07.17.md)
 * [18.08.06](conference/18.08.06.md)
+* [18.08.07](conference/18.08.07.md)
 
 ## LIBRARY\_YOUJIN
 
