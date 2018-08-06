@@ -12,7 +12,9 @@ void setup() {
 void loop() {
   inWater = analogRead(inWaterPin);
   outWater = analogRead(outWaterPin);
+  Serial.print("inWater : ");
   Serial.println(inWater);
+  Serial.print("outWater : ");
   Serial.println(outWater);
   delay(500);
 }
