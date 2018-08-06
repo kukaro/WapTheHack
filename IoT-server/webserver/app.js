@@ -59,6 +59,7 @@ io.sockets.on('connection', function (socket) {
     console.log('connected');
     socket.on('rasp', function (data) {
         console.log(data);
-        socket.emit('sendRasp', {'send': data});
+        socket.emit('sendRasp', {'send': 'b'});
     })
+
 });
