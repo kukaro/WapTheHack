@@ -26,14 +26,15 @@ def on_disconnect():
 
 
 def on_send_rasp(*args):
-    print(args)
+    print(args[0]['send'])
+    letter = args[0]['send']
+    ser.write(letter.encode('ascii'))
 
 
 with SocketIO('localhost', 8801) as socketIO:
     socketIO.on('sendRasp', on_send_rasp)
     try:
         while 1:
-            ser.write(b'a')
             response = ser.readline()
             realResponse = response.decode('utf-8')[:len(response) - 1]
             print(realResponse)
