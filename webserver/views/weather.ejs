@@ -91,7 +91,7 @@
            // ,dataType:'json'
             ,success: function(data) {
                 var myXML = rplLine(data.responseText);
-                
+
                 var indexS = myXML.indexOf("<p>"),
                 indexE = myXML.indexOf("</p>"),
                 result = myXML.substring(indexS + 3, indexE);
