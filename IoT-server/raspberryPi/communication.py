@@ -4,7 +4,7 @@ import serial
 from socketIO_client_nexus import SocketIO, BaseNamespace, LoggingNamespace
 
 ser = serial.Serial(
-    port='/dev/cu.usbmodem1411',
+    port='/dev/ttyACM0',
     baudrate='9600',
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
