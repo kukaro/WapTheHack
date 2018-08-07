@@ -11904,7 +11904,7 @@ module.exports = {
 	/**
 	 * Backward compatibility: since 2.1.5, the legend is registered as a plugin, making
 	 * Chart.Legend obsolete. To avoid a breaking change, we export the Legend as part of
-	 * the plugin, which one will be re-exposed in the chart.js file.
+	 * the plugin, which one will be re-exposed in the charts.js file.
 	 * https://github.com/chartjs/Chart.js/pull/2640
 	 * @private
 	 */
@@ -12165,7 +12165,7 @@ module.exports = {
 	/**
 	 * Backward compatibility: since 2.1.5, the title is registered as a plugin, making
 	 * Chart.Title obsolete. To avoid a breaking change, we export the Title as part of
-	 * the plugin, which one will be re-exposed in the chart.js file.
+	 * the plugin, which one will be re-exposed in the charts.js file.
 	 * https://github.com/chartjs/Chart.js/pull/2640
 	 * @private
 	 */
