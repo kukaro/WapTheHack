@@ -19,29 +19,30 @@
 <!--<script type="text/javascript" src="./js/jquery.xdomainajax.js"></script>-->
 <script type="text/javascript">
     realTimeWeather();
+
     function realTimeWeather() {
 
         var today = new Date();
-        var week = new Array('일','월','화','수','목','금','토');
+        var week = new Array('일', '월', '화', '수', '목', '금', '토');
         var year = today.getFullYear();
-        var month = today.getMonth()+1;
+        var month = today.getMonth() + 1;
         var day = today.getDate();
         var hours = today.getHours();
         var minutes = today.getMinutes();
 
-        $('.weather-date').html(month +"월 " + day + "일 " + week[today.getDay()]+"요일");
+        $('.weather-date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
 
         /*
          * 기상청 30분마다 발표
          * 30분보다 작으면, 한시간 전 hours 값
          */
-        if(minutes < 30){
+        if (minutes < 30) {
             hours = hours - 1;
-            if(hours < 0){
+            if (hours < 0) {
                 // 자정 이전은 전날로 계산
                 today.setDate(today.getDate() - 1);
                 day = today.getDate();
-                month = today.getMonth()+1;
+                month = today.getMonth() + 1;
                 year = today.getFullYear();
                 hours = 23;
             }
@@ -51,17 +52,17 @@
          * 9시 -> 09시 변경 필요
          */
 
-        if(hours < 10) {
-            hours = '0'+hours;
+        if (hours < 10) {
+            hours = '0' + hours;
         }
-        if(month < 10) {
+        if (month < 10) {
             month = '0' + month;
         }
-        if(day < 10) {
+        if (day < 10) {
             day = '0' + day;
         }
 
-        today = year+""+month+""+day;
+        today = year + "" + month + "" + day;
 
         /* 좌표 */
         var _nx = 98,//x좌표,
@@ -70,28 +71,30 @@
             ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastGrib";
         ForecastGribURL += "?ServiceKey=" + apikey;
         ForecastGribURL += "&base_date=" + today;
-        ForecastGribURL += "&base_time=" + hours +"00";
+        ForecastGribURL += "&base_time=" + hours + "00";
         ForecastGribURL += "&nx=" + _nx + "&ny=" + _ny;
         ForecastGribURL += "&pageNo=1&numOfRows=7";
         ForecastGribURL += "&_type=json";
 
         $.ajax({
             url: ForecastGribURL
-            ,type: 'GET'
-            ,cache: false
-           // ,dataType:'json'
-            ,error:function (request,error) {
+            , type: 'GET'
+            , cache: false
+            // ,dataType:'json'
+
+            , error: function (request, error) {
                 console.log(arguments);
-                alert("Cant do because:"+error);
+                alert("Cant do because:" + error);
             }
-            ,success: function(data,textStatus,jqXHR) {
+            , success: function (data, textStatus, jqXHR) {
                 alert("Done!")
                 var myXML = rplLine(jqXHR.responseText);
                 var result = myXML;
 
+
                 console.log(result);
 
-                var jsonObj = $.parseJSON('['+result+']');
+                var jsonObj = $.parseJSON('[' + result + ']');
 
                 var rain_state = jsonObj[0].response.body.items.item[1].obsrValue;
                 var rain = jsonObj[0].response.body.items.item[3].obsrValue;
@@ -99,10 +102,10 @@
                 var temperature = jsonObj[0].response.body.items.item[5].obsrValue;
 
                 $('.weather-temp').html(temperature.toFixed(1) + " ℃");
-                $('#RN1').html("시간당강수량 : "+ rain +"mm");
+                $('#RN1').html("시간당강수량 : " + rain + "mm");
 
-                if(rain_state != 0) {
-                    switch(rain_state) {
+                if (rain_state != 0) {
+                    switch (rain_state) {
                         case 1:
                             $('.weather-state-text').html("비");
                             break;
@@ -113,8 +116,8 @@
                             $('.weather-state-text').html("눈");
                             break;
                     }
-                }else {
-                    switch(sky) {
+                } else {
+                    switch (sky) {
                         case 1:
                             $('.weather-state-text').html("맑음");
                             break;
@@ -134,9 +137,9 @@
     }
 
     function rplLine(value) {
-        if(value!=null&&value!=""){
+        if (value != null && value != "") {
             return value.replace(/\n/g, "\\n");
-        }else{
+        } else {
             return value;
         }
     }
