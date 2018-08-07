@@ -21,6 +21,8 @@
 
 ## LIBRARY\_JUNGMIN
 
+* [18.08.06](library_jungmin/18.08.06.md)
+
 ## LIBRARY\_HYERIM
 
 ## LIBRARY\_JUNGJIN
