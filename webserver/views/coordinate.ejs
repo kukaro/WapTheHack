@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p class="coordinate"></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+    realTimeWeather();
+    function realTimeWeather() {
+
+
+        var URL = "http://www.kma.go.kr/DFSROOT/POINT/DATA/top.json.txt";
+        $.ajax({
+            url: URL
+            , type: 'GET'
+            , cache: false
+            // ,dataType:'json'
+            , error: function (request, error) {
+                console.log(arguments);
+                alert("Cant do because:" + error);
+            }
+            , success: function (data, textStatus, jqXHR) {
+                //alert("Done!")
+                var myXML = rplLine(jqXHR.responseText);
+                var result = myXML;
+                $('.coordinate').html(result);
+                var jsonObj = $.parseJSON(result);
+                console.log(jsonObj[0].value);
+
+                /*console.log(result);
+                var jsonObj = $.parseJSON('[' + result + ']');
+                var rain_state = jsonObj[0].response.body.items.item[1].obsrValue;
+                var rain = jsonObj[0].response.body.items.item[3].obsrValue;
+                var sky = jsonObj[0].response.body.items.item[4].obsrValue;
+                var temperature = jsonObj[0].response.body.items.item[5].obsrValue;
+                $('.weather-temp').html(temperature.toFixed(1) + " ℃");
+                $('#RN1').html("시간당강수량 : " + rain + "mm");
+                if (rain_state != 0) {
+                    switch (rain_state) {
+                        case 1:
+                            $('.weather-state-text').html("비");
+                            break;
+                        case 2:
+                            $('.weather-state-text').html("비/눈");
+                            break;
+                        case 3:
+                            $('.weather-state-text').html("눈");
+                            break;
+                    }
+                } else {
+                    switch (sky) {
+                        case 1:
+                            $('.weather-state-text').html("맑음");
+                            break;
+                        case 2:
+                            $('.weather-state-text').html("구름조금");
+                            break;
+                        case 3:
+                            $('.weather-state-text').html("구름많음");
+                            break;
+                        case 4:
+                            $('.weather-state-text').html("흐림");
+                            break;
+                    }
+                } //if 종료*/
+            } //success func 종료
+        });
+    }
+    function rplLine(value) {
+        if (value != null && value != "") {
+            return value.replace(/\n/g, "\\n");
+        } else {
+            return value;
+        }
+    }
+</script>
+</body>
+</html>

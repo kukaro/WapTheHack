@@ -12,8 +12,8 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var weatherRouter = require('./routes/weather');
-var disasterRiskZoneRouter = require('./routes/disasterRiskZone');
-var disasterAreaTestRouter = require('./routes/disasterAreaTest');
+var disasterAreaRouter = require('./routes/disasterArea');
+var coordinateRouter = require('./routes/coordinate');
 
 var app = express();
 
@@ -41,8 +41,8 @@ app.use(express.static(path.join(__dirname,'node_modules')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/weather',weatherRouter);
-app.use('/disasterRiskZone',disasterRiskZoneRouter);
-app.use('/disasterAreaTest',disasterAreaTestRouter);
+app.use('/disasterArea',disasterAreaRouter);
+app.use('/coordinate',coordinateRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
