@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+제발
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+var apiKey = "PG8sCezIEVyAJJCkSMeINV40rmHpB%2F32NSAIzyM4L2%2FPjjS7pFcDSNCWdlcZ17zgNv4pQm7UPMcppuYCUj30%2Bw%3D%3D",
+    url = 'http://api.data.go.kr/openapi/dsstr-risk-dstrc-std';
+url +="?serviceKey="+apiKey;
+url +="&s_page="+"1";
+url +="&s_list="+"100";
+url +="&type=json";
+$.ajax({
+    url: url
+    ,type:'GET'
+    ,cache: false
+    //,dataType: 'json'
+    ,error: function (request, error) {
+        console.log(arguments);
+        alert("Cant do because:" + error);
+    }
+    ,success: function (data, textStatus, jqXHR) {
+        alert("Done!")
+        var myXML = rplLine(jqXHR.responseText);
+        console.log(myXML);
+    }
+})
+function rplLine(value) {
+    if (value != null && value != "") {
+        return value.replace(/\n/g, "\\n");
+    } else {
+        return value;
+    }
+}
+</script>
+</body>
+</html>

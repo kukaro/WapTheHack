@@ -19,9 +19,7 @@
 <!--<script type="text/javascript" src="./js/jquery.xdomainajax.js"></script>-->
 <script type="text/javascript">
     realTimeWeather();
-
     function realTimeWeather() {
-
         var today = new Date();
         var week = new Array('일', '월', '화', '수', '목', '금', '토');
         var year = today.getFullYear();
@@ -29,9 +27,7 @@
         var day = today.getDate();
         var hours = today.getHours();
         var minutes = today.getMinutes();
-
         $('.weather-date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
-
         /*
          * 기상청 30분마다 발표
          * 30분보다 작으면, 한시간 전 hours 값
@@ -47,11 +43,9 @@
                 hours = 23;
             }
         }
-
         /* example
          * 9시 -> 09시 변경 필요
          */
-
         if (hours < 10) {
             hours = '0' + hours;
         }
@@ -61,9 +55,7 @@
         if (day < 10) {
             day = '0' + day;
         }
-
         today = year + "" + month + "" + day;
-
         /* 좌표 */
         var _nx = 98,//x좌표,
             _ny = 75,//y좌표,
@@ -75,13 +67,11 @@
         ForecastGribURL += "&nx=" + _nx + "&ny=" + _ny;
         ForecastGribURL += "&pageNo=1&numOfRows=7";
         ForecastGribURL += "&_type=json";
-
         $.ajax({
             url: ForecastGribURL
             , type: 'GET'
             , cache: false
             // ,dataType:'json'
-
             , error: function (request, error) {
                 console.log(arguments);
                 alert("Cant do because:" + error);
@@ -90,20 +80,14 @@
                 alert("Done!")
                 var myXML = rplLine(jqXHR.responseText);
                 var result = myXML;
-
-
                 console.log(result);
-
                 var jsonObj = $.parseJSON('[' + result + ']');
-
                 var rain_state = jsonObj[0].response.body.items.item[1].obsrValue;
                 var rain = jsonObj[0].response.body.items.item[3].obsrValue;
                 var sky = jsonObj[0].response.body.items.item[4].obsrValue;
                 var temperature = jsonObj[0].response.body.items.item[5].obsrValue;
-
                 $('.weather-temp').html(temperature.toFixed(1) + " ℃");
                 $('#RN1').html("시간당강수량 : " + rain + "mm");
-
                 if (rain_state != 0) {
                     switch (rain_state) {
                         case 1:
@@ -135,7 +119,6 @@
             } //success func 종료
         });
     }
-
     function rplLine(value) {
         if (value != null && value != "") {
             return value.replace(/\n/g, "\\n");
