@@ -31,7 +31,7 @@ def on_send_rasp(*args):
     ser.write(letter.encode('ascii'))
 
 
-with SocketIO('localhost', 8801) as socketIO:
+with SocketIO('192.168.43.36', 8801) as socketIO:
     socketIO.on('sendRasp', on_send_rasp)
     try:
         while 1:
