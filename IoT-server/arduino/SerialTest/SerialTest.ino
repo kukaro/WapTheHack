@@ -1,7 +1,9 @@
 const int inWaterPin = 0;
 const int outWaterPin = 2;
+const int gasPin = 4;
 int inWater = 0;
 int outWater = 0;
+int gas = 0;
 String income = "";
 
 void setup() {
@@ -20,9 +22,12 @@ void loop() {
   }
   inWater = analogRead(inWaterPin);
   outWater = analogRead(outWaterPin);
+  gas = analogRead(gasPin);
   Serial.print("inWater : ");
   Serial.println(inWater);
   Serial.print("outWater : ");
   Serial.println(outWater);
+  Serial.print("gas : ");
+  Serial.println(gas);
   delay(1000);
 }
