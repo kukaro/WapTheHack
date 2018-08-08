@@ -1,4 +1,4 @@
-package com.example.jinzzam.lessoner;
+package com.example.user.sockettest;
 
 import org.junit.Test;
 

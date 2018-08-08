@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.user.serverconnect"
+        applicationId "com.example.user.sockettest"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -16,10 +16,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
 }
 
 dependencies {
@@ -29,9 +25,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation ('io.socket:socket.io-client:1.0.0'){
-        exclude group:'org.json', module:'json'
+    implementation('io.socket:socket.io-client:1.0.0'){
+        exclude group: 'org.json', module:'json'
     }
-   implementation group:'com.google.code.gson', name:'gson', version:'2.8.5'
-    implementation group:'io.socket', name:'socket.io-client', version:'1.0.0'
 }

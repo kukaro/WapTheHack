@@ -1,4 +1,4 @@
-package com.example.jinzzam.lessoner;
+package com.example.user.serverconnect;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.jinzzam.lessoner", appContext.getPackageName());
+        assertEquals("com.example.user.serverconnect", appContext.getPackageName());
     }
 }
