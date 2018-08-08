@@ -8,32 +8,38 @@
     android:weightSum="1"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvMain"
+    <!--<TextView-->
+        <!--android:id="@+id/tvMain"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="0.97"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="0.03"-->
+        <!--android:weightSum="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etMsg"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="0.7"-->
+            <!--android:gravity="center"-->
+            <!--android:hint="입력하세요"/>-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btnSubmit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="0.3"-->
+            <!--android:text="제출" />-->
+    <Button
+        android:id="@+id/permission"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.97"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.03"
-        android:weightSum="1"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/etMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:gravity="center"
-            android:hint="입력하세요"/>
-
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:text="제출" />
-    </LinearLayout>
+        android:text="Button"
+        tools:ignore="InvalidId" />
+<!--</LinearLayout>-->
 </LinearLayout>
