@@ -26,3 +26,7 @@
 * [18.08.06](library_jungmin/18.08.06-1.md)
 * [18.08.07](library_jungmin/18.08.07.md)
 
+## LIBRARY\_HYERIM
+
+* [18.08.08](library_hyerim/18.08.08.md)
+
