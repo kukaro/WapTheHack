@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+ // 커밋 오류 검사아
     public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions, @NonNull int[] grantResults){
         if(requestCode == 1000){
             // 사용자가 "허용" 했을 때
