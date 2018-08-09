@@ -58,14 +58,19 @@ io.sockets.on('connection', function (socket) {
     socket.emit('connect');
     console.log('connected');
     socket.on('rasp', function (data) {
-        var dataArr = data.data.split(" ");
-        var inWater = dataArr[0].substring(3,);
-        var outWater = dataArr[1].substring(3,);
-        var gas = dataArr[2].substring(3,);
-        if (gas > 600)
-            socket.emit('gasOff', {'send': 'g'});
+        console.log(data);
+        try{
+            var dataArr = data.data.split(" ");
+            var inWater = dataArr[0].substring(3,);
+            var outWater = dataArr[1].substring(3,);
+            var gas = dataArr[2].substring(3,);
+            if (gas > 600)
+                socket.emit('gasOff', {'send': 'g'});
 
-        console.log(inWater, outWater, gas);
+            console.log(inWater, outWater, gas);
+        }catch(exception){
+            console.log("라즈베리파이에서 데이터 손실");
+        }
     })
 
 });
