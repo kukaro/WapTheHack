@@ -1027,6 +1027,7 @@
 
 
     function realTimeWeather(nx,ny) {
+        console.log(nx+',',ny);
         var today = new Date();
         var week = new Array('일', '월', '화', '수', '목', '금', '토');
         var year = today.getFullYear();
@@ -1128,6 +1129,7 @@
     }
 
     function realTimeWeather2(nx,ny) {
+        console.log(nx+','+ny);
         var today = new Date();
         var week = new Array('일', '월', '화', '수', '목', '금', '토');
         var year = today.getFullYear();
@@ -1154,6 +1156,7 @@
         /* example
          * 9시 -> 09시 변경 필요
          */
+        hours=hours+1;
         if (hours < 10) {
             hours = '0' + hours;
         }
@@ -1175,6 +1178,7 @@
         ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
         ForecastGribURL += "&pageNo=1&numOfRows=14";
         ForecastGribURL += "&_type=json";
+        console.log(ForecastGribURL);
         $.ajax({
             url: ForecastGribURL
             , type: 'GET'
@@ -1190,10 +1194,10 @@
                 var result = myXML;
                 console.log(result);
                 var jsonObj = $.parseJSON('[' + result + ']');
-                var rainPercentage = jsonObj[0].response.body.items.item[1].fcstValue;
-                var rain6 = jsonObj[0].response.body.items.item[3].fcstValue;
+                var rainPercentage = jsonObj[0].response.body.items.item[9].fcstValue;
+                var rain6 = jsonObj[0].response.body.items.item[11].fcstValue;
                 console.log('강수확률 : '+rainPercentage +' , 6시간강수량'+rain6);
-                $('#rainPer6').html('강수확률 : '+ rainPercentage+'<br>'+'6시간강수량 : '+rain6);
+                $('#rainPer6').html('강수확률 : '+ rainPercentage+'%'+'<br>'+'6시간강수량 : '+rain6+'mm');
             } //success func 종료
         });
     }
