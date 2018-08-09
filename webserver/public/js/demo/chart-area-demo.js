@@ -7,7 +7,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["3시간 전", "2시간 전", "1시간 전", "현재", "1시간 후", "2시간 후", "3시간 "],
+    labels: ["현재", "1시간 후", "2시간 후", "3시간 후", "4시간 후", "5시간 후", "6시간 후"],
     datasets: [{
       label: "Sessions",
       lineTension: 0.3,

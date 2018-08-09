@@ -154,6 +154,7 @@
                                 <i class="fas fa-fw fa-tint"></i>
                             </div>
                             <div class="mr-5"  id="RN1">현재 시간당강수량 : 0.00mm</div>
+                            <p id="rainPer6"></p>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
                             <span class="float-left">View Details</span>
@@ -930,6 +931,7 @@
         var rs = dfs_xy_conv("toXY",latitude,longitude);
         // 위도/경도 -> 기상청 좌표x / 좌표 y 변환
         realTimeWeather(rs.nx, rs.ny);
+        realTimeWeather2(rs.nx, rs.ny);
     }
     // locationSuccess
 
@@ -1121,6 +1123,77 @@
                             break;
                     }
                 } //if 종료
+            } //success func 종료
+        });
+    }
+
+    function realTimeWeather2(nx,ny) {
+        var today = new Date();
+        var week = new Array('일', '월', '화', '수', '목', '금', '토');
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        $('.weather-date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
+        /*
+         * 기상청 30분마다 발표
+         * 30분보다 작으면, 한시간 전 hours 값
+         */
+        if (minutes < 30) {
+            hours = hours - 1;
+            if (hours < 0) {
+                // 자정 이전은 전날로 계산
+                today.setDate(today.getDate() - 1);
+                day = today.getDate();
+                month = today.getMonth() + 1;
+                year = today.getFullYear();
+                hours = 23;
+            }
+        }
+        /* example
+         * 9시 -> 09시 변경 필요
+         */
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (day < 10) {
+            day = '0' + day;
+        }
+        today = year + "" + month + "" + day;
+        /* 좌표 */
+        /*var _nx = 98,//x좌표,
+            _ny = 75,//y좌표,*/
+        var apikey = "PG8sCezIEVyAJJCkSMeINV40rmHpB%2F32NSAIzyM4L2%2FPjjS7pFcDSNCWdlcZ17zgNv4pQm7UPMcppuYCUj30%2Bw%3D%3D",
+            ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
+        ForecastGribURL += "?ServiceKey=" + apikey;
+        ForecastGribURL += "&base_date=" + today;
+        ForecastGribURL += "&base_time=" + hours + "00";
+        ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
+        ForecastGribURL += "&pageNo=1&numOfRows=14";
+        ForecastGribURL += "&_type=json";
+        $.ajax({
+            url: ForecastGribURL
+            , type: 'GET'
+            , cache: false
+            // ,dataType:'json'
+            , error: function (request, error) {
+                console.log(arguments);
+                alert("Cant do because:" + error);
+            }
+            , success: function (data, textStatus, jqXHR) {
+                //alert("Done!")
+                var myXML = rplLine(jqXHR.responseText);
+                var result = myXML;
+                console.log(result);
+                var jsonObj = $.parseJSON('[' + result + ']');
+                var rainPercentage = jsonObj[0].response.body.items.item[1].fcstValue;
+                var rain6 = jsonObj[0].response.body.items.item[3].fcstValue;
+                console.log('강수확률 : '+rainPercentage +' , 6시간강수량'+rain6);
+                $('#rainPer6').html('강수확률 : '+ rainPercentage+'<br>'+'6시간강수량 : '+rain6);
             } //success func 종료
         });
     }
