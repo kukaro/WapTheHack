@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
             areas[i]='주소 : '+ data[i].재해위험지역 + data[i].재해위험지역상세주소;
             dangerDegree[i] = '위험 등급 : '+data[i].재해위험등급;
         }
-        res.render('disasterArea', { title: 'Express',areas:areas, dangerDegree:dangerDegree });
+        res.render('disasterArea', { title: 'Express',areas:areas, dangerDegree:dangerDegree, dataLength:dataLength });
     });
 });
 
