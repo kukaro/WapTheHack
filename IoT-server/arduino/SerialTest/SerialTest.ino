@@ -33,11 +33,14 @@ void loop() {
   outWater = analogRead(outWaterPin);
   gas = analogRead(gasPin);
   
-  Serial.print("inWater : ");
-  Serial.println(inWater);
-  Serial.print("outWater : ");
-  Serial.println(outWater);
-  Serial.print("gas : ");
-  Serial.println(gas);
+  Serial.print("iwr");
+  Serial.print(inWater);
+  Serial.print(" ");
+  Serial.print("owr");
+  Serial.print(outWater);
+  Serial.print(" ");
+  Serial.print("gas");
+  Serial.print(gas);
+  Serial.print("\n");
   delay(1000);
 }
