@@ -1,28 +1,44 @@
-const int inWaterPin = 0;
-const int outWaterPin = 2;
+const int inWaterPin = A0;
+const int outWaterPin = A1;
+const int gasPin = A2;
+const int lampLedPin = 6;
+const int fireLedPin = 7;
+
 int inWater = 0;
 int outWater = 0;
-String income = "";
+int gas = 0;
+
+char income = 'x';
 
 void setup() {
   Serial.begin(9600);
-  pinMode(inWaterPin, OUTPUT);
-  pinMode(outWaterPin, OUTPUT);
+  pinMode(lampLedPin, OUTPUT);
+  pinMode(fireLedPin, OUTPUT);  
+  digitalWrite(lampLedPin, HIGH);
+  digitalWrite(fireLedPin, HIGH);  
 }
 
 void loop() {
   if(Serial.available()){
-    income += (char)Serial.read();
+    income = Serial.read();
+    if(income=='g'){  //가스 잠그기
+    income = 'x';
+    digitalWrite(fireLedPin, LOW);
+    }
   }
-  if(income!=0){
-    Serial.println(income);
-    income = "";
-  }
+  
   inWater = analogRead(inWaterPin);
   outWater = analogRead(outWaterPin);
-  Serial.print("inWater : ");
-  Serial.println(inWater);
-  Serial.print("outWater : ");
-  Serial.println(outWater);
+  gas = analogRead(gasPin);
+  
+  Serial.print("iwr");
+  Serial.print(inWater);
+  Serial.print(" ");
+  Serial.print("owr");
+  Serial.print(outWater);
+  Serial.print(" ");
+  Serial.print("gas");
+  Serial.print(gas);
+  Serial.print("\n");
   delay(1000);
 }
