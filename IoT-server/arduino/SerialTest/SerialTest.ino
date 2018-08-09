@@ -7,12 +7,8 @@ const int fireLedPin = 7;
 int inWater = 0;
 int outWater = 0;
 int gas = 0;
-bool lampLed = true;
-bool fireLed = true;
 
 char income = 'x';
-
-bool sw = true; 
 
 void setup() {
   Serial.begin(9600);
@@ -43,9 +39,5 @@ void loop() {
   Serial.println(outWater);
   Serial.print("gas : ");
   Serial.println(gas);
-  Serial.print("lamp : ");
-  Serial.println(lampLed);
-  Serial.print("fire : ");
-  Serial.println(fireLed);
   delay(1000);
 }
