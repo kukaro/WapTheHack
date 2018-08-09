@@ -1142,7 +1142,7 @@
          * 기상청 30분마다 발표
          * 30분보다 작으면, 한시간 전 hours 값
          */
-        if (minutes < 30) {
+        /*if (minutes < 30) {
             hours = hours - 1;
             if (hours < 0) {
                 // 자정 이전은 전날로 계산
@@ -1152,7 +1152,7 @@
                 year = today.getFullYear();
                 hours = 23;
             }
-        }
+        }*/
         /* example
          * 9시 -> 09시 변경 필요
          */
@@ -1192,11 +1192,22 @@
                 //alert("Done!")
                 var myXML = rplLine(jqXHR.responseText);
                 var result = myXML;
-                console.log(result);
+                /*console.log(result);*/
                 var jsonObj = $.parseJSON('[' + result + ']');
-                var rainPercentage = jsonObj[0].response.body.items.item[9].fcstValue;
-                var rain6 = jsonObj[0].response.body.items.item[11].fcstValue;
-                console.log('강수확률 : '+rainPercentage +' , 6시간강수량'+rain6);
+                var rainPercentage;/* = jsonObj[0].response.body.items.item[9].fcstValue;*/
+                for(var i = 0;i<jsonObj[0].response.body.items.item.length;i++){
+                    if(jsonObj[0].response.body.items.item[i].category=='POP') {
+                        rainPercentage = jsonObj[0].response.body.items.item[i].fcstValue;
+                        break;
+                    }
+                }
+                var rain6;/* = jsonObj[0].response.body.items.item[11].fcstValue;*/
+                for(var i = 0;i<jsonObj[0].response.body.items.item.length;i++){
+                    if(jsonObj[0].response.body.items.item[i].category=='R06') {
+                        rain6 = jsonObj[0].response.body.items.item[i].fcstValue;
+                        break;
+                    }
+                }
                 $('#rainPer6').html('강수확률 : '+ rainPercentage+'%'+'<br>'+'6시간강수량 : '+rain6+'mm');
             } //success func 종료
         });
