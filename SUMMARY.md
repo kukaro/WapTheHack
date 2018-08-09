@@ -22,6 +22,7 @@
 * [18.08.06](library_youjin/18.08.06.md)
 * [18.08.07](library_youjin/18.08.07.md)
 * [18.08.08](library_youjin/18.08.08.md)
+* [18.08.09](library_youjin/18.08.09.md)
 
 ## LIBRARY\_JUNGMIN
 
