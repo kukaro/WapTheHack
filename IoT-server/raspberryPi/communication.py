@@ -25,14 +25,14 @@ def on_disconnect():
     print('Disconnected..')
 
 
-def on_send_rasp(*args):
+def turn_off_gas(*args):
     print(args[0]['send'])
     letter = args[0]['send']
     ser.write(letter.encode('ascii'))
 
 
 with SocketIO('192.168.43.36', 8801) as socketIO:
-    socketIO.on('sendRasp', on_send_rasp)
+    socketIO.on('gasOff', turn_off_gas)
     try:
         while 1:
             response = ser.readline()

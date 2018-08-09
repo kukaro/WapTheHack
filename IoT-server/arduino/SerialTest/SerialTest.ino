@@ -21,10 +21,8 @@ void setup() {
 void loop() {
   if(Serial.available()){
     income = Serial.read();
-    if(income=='o'){
-    Serial.println(income);
+    if(income=='g'){  //가스 잠그기
     income = 'x';
-    digitalWrite(lampLedPin, LOW);
     digitalWrite(fireLedPin, LOW);
     }
   }

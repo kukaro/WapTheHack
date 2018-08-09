@@ -60,10 +60,12 @@ io.sockets.on('connection', function (socket) {
     socket.on('rasp', function (data) {
         var dataArr = data.data.split(" ");
         var inWater = dataArr[0].substring(3,);
-        var outWater = dataArr[1].substring(3, );
-        var gas = dataArr[2].substring(3, );
+        var outWater = dataArr[1].substring(3,);
+        var gas = dataArr[2].substring(3,);
+        if (gas > 600)
+            socket.emit('gasOff', {'send': 'g'});
+
         console.log(inWater, outWater, gas);
-       // socket.emit('sendRasp', {'send': 'o'});
     })
 
 });
