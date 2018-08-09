@@ -58,13 +58,11 @@ io.sockets.on('connection', function (socket) {
     socket.emit('connect');
     console.log('connected');
     socket.on('rasp', function (data) {
-        console.log(data);
         try {
-            var dataArr = data.data.split(" ");
-            var inWater = dataArr[0].substring(3,);
-            var outWater = dataArr[1].substring(3,);
-            var gas = dataArr[2].substring(3,);
-            if (gas > 600)
+            var inWater = data.inWater;
+            var outWater = data.outWater;
+            var gas = data.gas;
+            if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
 
             console.log(inWater, outWater, gas);

@@ -38,7 +38,12 @@ with SocketIO('192.168.43.36', 8801) as socketIO:
             response = ser.readline()
             realResponse = response.decode('utf-8')[:len(response) - 1]
             print(realResponse)
-            socketIO.emit('rasp', {'data': realResponse})
+            dataArr = realResponse.split(" ")
+            inWater = dataArr[0][3:]
+            outWater = dataArr[1][3:]
+            gas = dataArr[2][3:]
+            print(inWater, outWater, gas)
+            socketIO.emit('rasp', {'inWater': inWater, 'outWater': outWater, 'gas': gas})
             socketIO.wait(seconds=1)
     except KeyboardInterrupt:
         ser.close()
