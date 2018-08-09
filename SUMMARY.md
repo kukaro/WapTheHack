@@ -34,6 +34,7 @@
 ## LIBRARY\_HYERIM
 
 * [18.08.08](library_hyerim/18.08.08.md)
+* [18.08.09](library_hyerim/18.08.09.md)
 
 ## LIBRART\_JEONGJIN
 
