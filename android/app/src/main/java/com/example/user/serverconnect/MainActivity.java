@@ -41,47 +41,47 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        tvMain = findViewById(R.id.tvMain);
-//        etMsg = findViewById(R.id.etMsg);
-//        btnSubmit = findViewById(R.id.btnSubmit);
-//
-//        btnSubmit.setOnClickListener((view)->{
-//            JsonObject preJsonObject = new JsonObject();
-//            preJsonObject.addProperty("comment", etMsg.getText()+"");
-//            JSONObject jsonObject = null;
-//            try {
-//                jsonObject = new JSONObject(preJsonObject.toString());
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            socket.emit("reqMsg", jsonObject);
-//            etMsg.setText("");
-//        });
-//
-//        try {
-//            socket = IO.socket("http://192.168.43.98:3100");
-//            socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
-//                JsonObject preJsonObject = new JsonObject();
-//                preJsonObject.addProperty("roomName", "myroom");
-//                JSONObject jsonObject = null;
-//                try {
-//                    jsonObject = new JSONObject(preJsonObject.toString());
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                socket.emit("joinRoom",jsonObject);
-//            }).on("recMsg", (Object... objects) -> {
-//                JsonParser jsonParsers = new JsonParser();
-//                JsonObject jsonObject = (JsonObject) jsonParsers.parse(objects[0] + "");
-//                runOnUiThread(()->{
-//                    tvMain.setText(tvMain.getText().toString()+jsonObject.get("comment").getAsString());
-//                });
-//            });
-//            socket.connect();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        setContentView(R.layout.activity_main);
+        tvMain = findViewById(R.id.tvMain);
+        etMsg = findViewById(R.id.etMsg);
+        btnSubmit = findViewById(R.id.btnSubmit);
+
+        btnSubmit.setOnClickListener((view)->{
+            JsonObject preJsonObject = new JsonObject();
+            preJsonObject.addProperty("comment", etMsg.getText()+"");
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(preJsonObject.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            socket.emit("reqMsg", jsonObject);
+            etMsg.setText("");
+        });
+
+        try {
+            socket = IO.socket("http://192.168.43.98:3100");
+            socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
+                JsonObject preJsonObject = new JsonObject();
+                preJsonObject.addProperty("roomName", "myroom");
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(preJsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                socket.emit("joinRoom",jsonObject);
+            }).on("recMsg", (Object... objects) -> {
+                JsonParser jsonParsers = new JsonParser();
+                JsonObject jsonObject = (JsonObject) jsonParsers.parse(objects[0] + "");
+                runOnUiThread(()->{
+                    tvMain.setText(tvMain.getText().toString()+jsonObject.get("comment").getAsString());
+                });
+            });
+            socket.connect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // --------------------------------------------------------------------------------------------
         setContentView(R.layout.activity_main);
 
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         // 이미 권한이 있을 때
-                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:051-742-3674"));
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-8201-5102"));
                         startActivity(intent);
 
                     }
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1000){
             // 사용자가 "허용" 했을 때
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:051-742-3674"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-8201-5102"));
 
                 if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
                     startActivity(intent);
