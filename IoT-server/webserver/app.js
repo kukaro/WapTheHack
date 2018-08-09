@@ -59,7 +59,7 @@ io.sockets.on('connection', function (socket) {
     console.log('connected');
     socket.on('rasp', function (data) {
         console.log(data);
-        try{
+        try {
             var dataArr = data.data.split(" ");
             var inWater = dataArr[0].substring(3,);
             var outWater = dataArr[1].substring(3,);
@@ -68,7 +68,7 @@ io.sockets.on('connection', function (socket) {
                 socket.emit('gasOff', {'send': 'g'});
 
             console.log(inWater, outWater, gas);
-        }catch(exception){
+        } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
         }
     })
