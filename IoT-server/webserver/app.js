@@ -73,7 +73,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('joinRoom', function (data) {
         console.log('joined room' + data.roomID);
         socket.join('room' + data.roomID);
-    });
-    //socket.on('msgRe')
+    }).emit('sendMsg', {'msg': 'Hello World!!'});
+
 
 });

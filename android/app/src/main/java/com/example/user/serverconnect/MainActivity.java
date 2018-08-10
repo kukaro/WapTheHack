@@ -42,13 +42,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvMain = findViewById(R.id.tvMain);
+        tvMain = (TextView) findViewById(R.id.tvMain);
         etMsg = findViewById(R.id.etMsg);
         btnSubmit = findViewById(R.id.btnSubmit);
+        String hihi = "hello";
+        tvMain.setText(hihi);
 
-        btnSubmit.setOnClickListener((view)->{
+        btnSubmit.setOnClickListener((view) -> {
             JsonObject preJsonObject = new JsonObject();
-            preJsonObject.addProperty("comment", etMsg.getText()+"");
+            preJsonObject.addProperty("comment", etMsg.getText() + "");
             JSONObject jsonObject = null;
             try {
                 jsonObject = new JSONObject(preJsonObject.toString());
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             socket.emit("reqMsg", jsonObject);
-            etMsg.setText("");
+            //etMsg.setText("");
         });
 
         try {
@@ -71,15 +73,16 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                socket.emit("joinRoom",jsonObject);
-            }).on("recMsg", (Object... objects) -> {
+                socket.emit("joinRoom", jsonObject);
+            }).on("sendMsg", (Object... objects) -> {
                 JsonParser jsonParsers = new JsonParser();
                 JsonObject jsonObject = (JsonObject) jsonParsers.parse(objects[0] + "");
-                runOnUiThread(()->{
-                    tvMain.setText(tvMain.getText().toString()+jsonObject.get("comment").getAsString());
-                });
+                System.out.println(jsonObject.get("msg").toString());
+                //tvMain.setText("hello");
+//                runOnUiThread(() -> {
+//                    tvMain.setText(jsonObject.get("msg").toString());
+//                });
             });
-           // socket.connect();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     // CALL_PHONE 이 허용되어있는지 확인해본다.
                     int permissionResult = checkSelfPermission(Manifest.permission.CALL_PHONE);
                     // permissionResult 에는 DENIED / GRANTED 중의 값이 저장된다
-                    if(permissionResult == PackageManager.PERMISSION_DENIED){
-                        if(shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)) {
+                    if (permissionResult == PackageManager.PERMISSION_DENIED) {
+                        if (shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)) {
                             // shouldShowRequestPermissionRationale 메소드는
                             // 요청이 거부된 적 있다 = True
                             // 요청이 거부된 적 없다 = False
@@ -105,12 +108,12 @@ public class MainActivity extends AppCompatActivity {
                             // 이 아래의 내용은 True , 즉 요청이 거부된 적 있을 때에 실행되는 코드이다.
                             AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                             dialog.setTitle("<--권한 요청-->")
-                            .setMessage("이 어플은 << 전화 걸기 >> 권한을 필요로 합니다. 동의하고 계속하시겠습니까 ?")
+                                    .setMessage("이 어플은 << 전화 걸기 >> 권한을 필요로 합니다. 동의하고 계속하시겠습니까 ?")
                                     .setPositiveButton("YES !", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                        // 새로운 인스턴스(onClickListener)를 생성했기때문에 버전 체크를 한번 더 해준다 -> 왜지 ?
-                                            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                            // 새로운 인스턴스(onClickListener)를 생성했기때문에 버전 체크를 한번 더 해준다 -> 왜지 ?
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                                 requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1000);
                                                 // CALL_PHONE 권한을 android os 에 요청한다.
                                             }
@@ -124,14 +127,12 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     })
                                     .create()
-                            .show();
-                        }
-                        else{
+                                    .show();
+                        } else {
                             // 최초로 권한을 요청할 떄
                             requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1000);
                         }
-                    }
-                    else{
+                    } else {
                         // 이미 권한이 있을 때
                         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-2974-1693"));
                         startActivity(intent);
@@ -143,13 +144,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions, @NonNull int[] grantResults){
-        if(requestCode == 1000){
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1000) {
             // 사용자가 "허용" 했을 때
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-2974-1693"));
 
-                if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     startActivity(intent);
                 }
             } else {
