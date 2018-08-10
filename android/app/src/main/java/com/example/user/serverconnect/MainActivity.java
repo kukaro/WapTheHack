@@ -59,21 +59,23 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 socket.emit("joinRoom", jsonObject);
+                new Thread(() -> {
+                    socket.on("sendMsg", (Object... msgObjects) -> {
+                        JsonParser jsonParsers = new JsonParser();
+                        JsonObject msgJson = (JsonObject) jsonParsers.parse(msgObjects[0] + "");
+                        System.out.println(msgJson.get("msg").toString());
+                        testString = msgJson.get("msg").toString();
+                        warningNum = 1;
 
-                socket.on("sendMsg", (Object... msgObjects) -> {
-                    JsonParser jsonParsers = new JsonParser();
-                    JsonObject msgJson = (JsonObject) jsonParsers.parse(msgObjects[0] + "");
-                    System.out.println(msgJson.get("msg").toString());
-                    testString = msgJson.get("msg").toString();
-                    warningNum = 1;
+                        try {
+                            System.out.println("try catch");
+                            textView.setText(testString);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }).start();
 
-                    try {
-                        System.out.println("try catch");
-                        textView.setText(testString);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
             });
             socket.connect();
         } catch (Exception e) {

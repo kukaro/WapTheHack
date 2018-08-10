@@ -65,21 +65,24 @@ io.sockets.on('connection', function (socket) {
             inWater = data.inWater;
             outWater = data.outWater;
             gas = data.gas;
+            console.log(inWater, outWater, gas);
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-
-            console.log(inWater, outWater, gas);
+            if (inWater > 500 || outWater > 500) {
+                io.sockets.emit('sendMsg', {'msg': 'Hello World!!'});
+            }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
         }
     });
+    //socket.emit('sendMsg', {'msg': 'Hello World!!'});
 
-    socket.on('joinRoom', function (data) {
-        console.log('joined room' + data.roomID);
-        socket.join('room' + data.roomID);
-        //if (inWater > 100 || outWater > 100)
-        socket.emit('sendMsg', {'msg': 'Hello World!!'});
-    });
+    // socket.on('joinRoom', function (data) {
+    //     console.log('joined room' + data.roomID);
+    //     socket.join('room' + data.roomID);
+    //     //if (inWater > 100 || outWater > 100)
+    //     socket.emit('sendMsg', {'msg': 'Hello World!!'});
+    // });
 
 
 });
