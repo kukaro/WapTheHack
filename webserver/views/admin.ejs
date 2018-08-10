@@ -230,15 +230,89 @@
             </div>
 
             <!-- Danger Level Chart-->
-            <div class="card mb-3" style="width:30rem;">
-                <div class="card-header">
-                    <i class="fas fa-chart-area"></i>
-                    Danger Level Chart
+            <!--<div class="card mb-3" style="width:30rem;">-->
+            <!--<div class="card-header">-->
+            <!--<i class="fas fa-chart-area"></i>-->
+            <!--Danger Level Chart-->
+            <!--</div>-->
+            <!--<div class="card-body">-->
+            <!--<canvas id="myAreaChart"></canvas>-->
+            <!--</div>-->
+            <!--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+            <!--</div>-->
+            <!-- Danger Level Chart End-->
+
+            <div class="row">
+                <div class="col-lg-6" style="padding: 0px 0px 0px 50px;">
+                    <!--Map-->
+                    <iframe src="http://www.kma.go.kr/cgi-bin/dfs/nph-dfs_now2?fcttype=VSRT&map=G1&data1=RN1&size=400&auto=a&tm_fc=201808102300&tm_ef=201808110100&effect=GT&mode=H"
+                            name="dfsframe" width="480px" height="700px" frameborder="0" marginwidth="0"
+                            marginheight="0"
+                            scrolling="no" allowTransparency="true" title="���糯��"></iframe>
+                    <!--Map-->
                 </div>
-                <div class="card-body">
-                    <canvas id="myAreaChart" width="50" height="30"></canvas>
+                <div class="col-lg-6" style="padding: 0px 50px 0px 0px;">
+                    <!--Real-Time Ranking-->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-table"></i>
+                            실시간 지역별 침수 위험도 랭킹
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>순위</th>
+                                        <th>지역</th>
+                                        <th>위험도</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>창원시 의창구</td>
+                                        <td>87%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>부산 남구</td>
+                                        <td>75%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>서울시 중구</td>
+                                        <td>73%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>대구 수성구</td>
+                                        <td>68%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>경기도 고양시</td>
+                                        <td>63%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>광주시 동구</td>
+                                        <td>61%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>충청남도 공주시</td>
+                                        <td>59%</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    </div>
+                    <!--Real-Time Ranking End-->
+
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
 
         </div>
