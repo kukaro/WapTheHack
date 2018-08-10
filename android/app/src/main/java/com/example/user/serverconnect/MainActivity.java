@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             socket = IO.socket("http://192.168.43.36:8801");
+            socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("roomID", "1");
@@ -59,25 +60,19 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 socket.emit("joinRoom", jsonObject);
-                new Thread(() -> {
-                    socket.on("sendMsg", (Object... msgObjects) -> {
-                        JsonParser jsonParsers = new JsonParser();
-                        JsonObject msgJson = (JsonObject) jsonParsers.parse(msgObjects[0] + "");
-                        System.out.println(msgJson.get("msg").toString());
-                        testString = msgJson.get("msg").toString();
-                        warningNum = 1;
-
-                        try {
-                            System.out.println("try catch");
-                            textView.setText(testString);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }).start();
-
+            }).on("sendMsg", (Object... objects) -> {
+                JsonParser jsonParsers = new JsonParser();
+                JsonObject jsonObject = (JsonObject) jsonParsers.parse(objects[0] + "");
+                System.out.println(jsonObject.get("msg").toString());
+                testString = jsonObject.get("msg").toString();
+                warningNum = 1;
+                try {
+                    textView.setText(testString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
-            socket.connect();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

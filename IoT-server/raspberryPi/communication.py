@@ -39,7 +39,6 @@ with SocketIO('192.168.43.36', 8801) as socketIO:
             realResponse = response.decode('utf-8')[:len(response) - 1]
             print(realResponse)
             dataArr = realResponse.split(" ")
-            if len(dataArr) < 3: pass
             inWater = dataArr[0][3:]
             outWater = dataArr[1][3:]
             gas = dataArr[2][3:]
