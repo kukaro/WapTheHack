@@ -359,7 +359,7 @@
             </div>
         </div>
             <!-- DataTables Example -->
-            <div class="card mb-3">
+            <!--<div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
                     Data Table Example
@@ -849,7 +849,7 @@
                     </div>
                 </div>
                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
+            </div>-->
 
 
         </div>
@@ -1036,6 +1036,7 @@
         var hours = today.getHours();
         var minutes = today.getMinutes();
         $('.weather-date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
+        alert(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
         /*
          * 기상청 30분마다 발표
          * 30분보다 작으면, 한시간 전 hours 값
@@ -1075,6 +1076,7 @@
         ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
         ForecastGribURL += "&pageNo=1&numOfRows=7";
         ForecastGribURL += "&_type=json";
+        console.log(ForecastGribURL);
         $.ajax({
             url: ForecastGribURL
             , type: 'GET'
@@ -1088,48 +1090,61 @@
                 //alert("Done!")
                 var myXML = rplLine(jqXHR.responseText);
                 var result = myXML;
-                console.log(result);
+                //console.log(result);
                 var jsonObj = $.parseJSON('[' + result + ']');
-                var rain_state = jsonObj[0].response.body.items.item[1].obsrValue;
+                var rainState = jsonObj[0].response.body.items.item[1].obsrValue;
                 var rain = jsonObj[0].response.body.items.item[3].obsrValue;
                 var sky = jsonObj[0].response.body.items.item[4].obsrValue;
                 var temperature = jsonObj[0].response.body.items.item[5].obsrValue;
+                var weather;
                 $('#temperature').html(temperature.toFixed(1) + " ℃");
                 $('#RN1').html("시간당강수량"+'<h2>'+rain + "mm");
-                if (rain_state != 0) {
+                if (rainState != 0) {
                     switch (rain_state) {
                         case 1:
+                            weather = '비';
                             $('#weatherState').html("현재날씨"+'<br>'+"<h2>비"+'<br>'+temperature.toFixed(1) + " ℃");
                             break;
                         case 2:
+                            weather = '비/눈';
                             $('#weatherState').html("현재날씨"+'<br>'+"<h2>비/눈</h1>"+'<br>'+temperature.toFixed(1) + " ℃");
                             break;
                         case 3:
+                            weather = '눈';
                             $('#weatherState').html("현재날씨"+'<br>'+"<h2>눈"+'<br>'+temperature.toFixed(1) + " ℃");
                             break;
                     }
                 } else {
                     switch (sky) {
                         case 1:
+                            weather = '맑음';
                             $('#weatherState').html("현재날씨"+'<br>'+"<h2>맑음"+'<br>'+temperature.toFixed(1) + " ℃");
                             break;
                         case 2:
+                            weather = '구름조금';
                             $('#weatherState').html("현재날씨"+'<br>'+"<h2>구름조금"+'<br>'+temperature.toFixed(1) + " ℃");
                             break;
                         case 3:
+                            weather = '구름많음';
                             $('#weatherState').html("현재날씨"+'<br>'+"<h2>구름많음 "+'<br>'+temperature.toFixed(1) + " ℃");
                             break;
                         case 4:
+                            weather = '흐림';
                             $('#weatherState').html("현재날씨"+'<br>'+"<h2>흐림"+'<br>'+temperature.toFixed(1) + " ℃");
                             break;
                     }
                 } //if 종료
+                $.ajax( {url: 'http://localhost:3000/test'
+                    , type: 'Post'
+                    , cache: false
+                    , data:{'rain':rain,'weather':weather,'temperature':temperature }
+                });
             } //success func 종료
         });
     }
 
     function realTimeWeather2(nx,ny) {
-        console.log(nx+','+ny);
+        //console.log(nx+','+ny);
         var today = new Date();
         var week = new Array('일', '월', '화', '수', '목', '금', '토');
         var year = today.getFullYear();
@@ -1153,10 +1168,13 @@
                 hours = 23;
             }
         }*/
+        day = day-1;
+        hours = 23;
+
         /* example
          * 9시 -> 09시 변경 필요
          */
-        hours=hours+1;
+        //hours=hours-1;
         if (hours < 10) {
             hours = '0' + hours;
         }
@@ -1176,7 +1194,7 @@
         ForecastGribURL += "&base_date=" + today;
         ForecastGribURL += "&base_time=" + hours + "00";
         ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
-        ForecastGribURL += "&pageNo=1&numOfRows=14";
+        ForecastGribURL += "&pageNo=1&numOfRows=82";
         ForecastGribURL += "&_type=json";
         console.log(ForecastGribURL);
         $.ajax({
@@ -1194,21 +1212,27 @@
                 var result = myXML;
                 /*console.log(result);*/
                 var jsonObj = $.parseJSON('[' + result + ']');
-                var rainPercentage;/* = jsonObj[0].response.body.items.item[9].fcstValue;*/
-                for(var i = 0;i<jsonObj[0].response.body.items.item.length;i++){
+                var rainPercentage = [];/* = jsonObj[0].response.body.items.item[9].fcstValue;*/
+                for(var i = 0,j=0;i<jsonObj[0].response.body.items.item.length;i++){
                     if(jsonObj[0].response.body.items.item[i].category=='POP') {
-                        rainPercentage = jsonObj[0].response.body.items.item[i].fcstValue;
-                        break;
+                        rainPercentage[j] = jsonObj[0].response.body.items.item[i].fcstValue;
+                        j = j+1;
                     }
                 }
-                var rain6;/* = jsonObj[0].response.body.items.item[11].fcstValue;*/
-                for(var i = 0;i<jsonObj[0].response.body.items.item.length;i++){
-                    if(jsonObj[0].response.body.items.item[i].category=='R06') {
-                        rain6 = jsonObj[0].response.body.items.item[i].fcstValue;
-                        break;
+                var rain6 = [];/* = jsonObj[0].response.body.items.item[11].fcstValue;*/
+                for(var i = 0,j = 0;i<jsonObj[0].response.body.items.item.length;i++){
+                    if(jsonObj[0].response.body.items.item[i].category==='R06') {
+                        rain6[j] = jsonObj[0].response.body.items.item[i].fcstValue;
+                        j=j+1;
                     }
                 }
+                console.log(rainPercentage+','+rain6);
                 $('#rainPer6').html('강수확률 : '+ rainPercentage+'%'+'<br>'+'6시간강수량 : '+rain6+'mm');
+                $.ajax( {url: 'http://localhost:3000/test2'
+                    , type: 'Post'
+                    , cache: false
+                    , data:{'rain6':rain6,'rainPercentage':rainPercentage }
+                });
             } //success func 종료
         });
     }
