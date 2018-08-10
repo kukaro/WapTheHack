@@ -245,10 +245,44 @@
             <div class="row">
                 <div class="col-lg-6" style="padding: 0px 0px 0px 50px;">
                     <!--Map-->
-                    <iframe src="http://www.kma.go.kr/cgi-bin/dfs/nph-dfs_now2?fcttype=VSRT&map=G1&data1=RN1&size=400&auto=a&tm_fc=201808102300&tm_ef=201808110100&effect=GT&mode=H"
+                    <script type="text/javascript">
+                        var today = new Date();
+                        var year = today.getFullYear();
+                        var month = today.getMonth() + 1;
+                        var day = today.getDate();
+                        var hours = today.getHours();
+
+                        var before1hours = hours-1;
+                        var after1hours = hours+1;
+
+                        if (before1hours < 10) {
+                            before1hours = '0' + before1hours;
+                        }
+                        if(after1hours<10){
+                            after1hours = '0'+after1hours;
+                        }
+                        if (month < 10) {
+                            month = '0' + month;
+                        }
+                        if (day < 10) {
+                            day = '0' + day;
+                        }
+
+                        before1hours = year + "" + month + "" + day+""+before1hours+'00';
+                        after1hours = year+""+month+""+day+""+after1hours+'00'
+
+                        console.log(before1hours);
+                        console.log(after1hours);
+                        var url = "http://www.kma.go.kr/cgi-bin/dfs/nph-dfs_now2?fcttype=VSRT&map=G1&data1=RN1&size=400&auto=a&tm_fc="+before1hours+"&tm_ef="+after1hours+"&effect=GT&mode=H";
+                        console.log(url);
+                    </script>
+                    <script>
+                        document.write("<iframe src="+url+"name=\"dfsframe\" width=\"480px\" height=\"700px\" frameborder=\"0\" marginwidth=\"0\"\n" + "marginheight=\"0\"\n" + "scrolling=\"no\" allowTransparency=\"true\" title=\"���糯��\"></iframe>");
+                    </script>
+                    <!--<iframe id='url'
                             name="dfsframe" width="480px" height="700px" frameborder="0" marginwidth="0"
                             marginheight="0"
-                            scrolling="no" allowTransparency="true" title="���糯��"></iframe>
+                            scrolling="no" allowTransparency="true" title="���糯��"></iframe>-->
                     <!--Map-->
                 </div>
                 <div class="col-lg-6" style="padding: 0px 50px 0px 0px;">
