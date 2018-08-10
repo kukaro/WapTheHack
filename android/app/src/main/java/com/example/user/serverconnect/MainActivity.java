@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,41 +24,28 @@ import com.google.gson.JsonParser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URISyntaxException;
-import java.security.PrivilegedAction;
-
 import io.socket.client.IO;
 import io.socket.client.Socket;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvMain;
+    private Socket socket;
     private EditText etMsg;
     private Button btnSubmit;
-    private Socket socket;
     private Button button;
+    private TextView textView;
+    int warningNum;
+    String testString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvMain = (TextView) findViewById(R.id.tvMain);
+
         etMsg = findViewById(R.id.etMsg);
         btnSubmit = findViewById(R.id.btnSubmit);
-        String hihi = "hello";
-        tvMain.setText(hihi);
+        textView = findViewById(R.id.textView);
 
-        btnSubmit.setOnClickListener((view) -> {
-            JsonObject preJsonObject = new JsonObject();
-            preJsonObject.addProperty("comment", etMsg.getText() + "");
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(preJsonObject.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            socket.emit("reqMsg", jsonObject);
-            //etMsg.setText("");
-        });
+//-----------------------------Socket start------------------------------------
 
         try {
             socket = IO.socket("http://192.168.43.36:8801");
@@ -78,16 +64,36 @@ public class MainActivity extends AppCompatActivity {
                 JsonParser jsonParsers = new JsonParser();
                 JsonObject jsonObject = (JsonObject) jsonParsers.parse(objects[0] + "");
                 System.out.println(jsonObject.get("msg").toString());
-                //tvMain.setText("hello");
-//                runOnUiThread(() -> {
-//                    tvMain.setText(jsonObject.get("msg").toString());
-//                });
+                testString = jsonObject.get("msg").toString();
+                warningNum = 1;
+                try {
+                    textView.setText(testString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // --------------------------------------------------------------------------------------------
-        setContentView(R.layout.activity_main);
+//-----------------------------Socket end------------------------------------
+
+//-----------------------------???------------------------------------
+        btnSubmit.setOnClickListener((view) -> {
+            JsonObject preJsonObject = new JsonObject();
+            preJsonObject.addProperty("comment", etMsg.getText() + "");
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(preJsonObject.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            socket.emit("reqMsg", jsonObject);
+            etMsg.setText("");
+        });
+//-----------------------------???------------------------------------
+
+// ----------------------------Call Phone Start----------------------------------------
 
         button = (Button) findViewById(R.id.permission);
 
@@ -158,4 +164,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+// ----------------------------Call Phone End----------------------------------------
+
 }

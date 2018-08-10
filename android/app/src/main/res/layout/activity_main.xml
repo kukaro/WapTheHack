@@ -41,10 +41,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvMain"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.03"
-        android:text="nothing" />
+        android:text="TextView" />
 
 </LinearLayout>
