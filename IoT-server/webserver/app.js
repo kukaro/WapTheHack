@@ -75,14 +75,5 @@ io.sockets.on('connection', function (socket) {
             console.log("라즈베리파이에서 데이터 손실");
         }
     });
-    //socket.emit('sendMsg', {'msg': 'Hello World!!'});
-
-    // socket.on('joinRoom', function (data) {
-    //     console.log('joined room' + data.roomID);
-    //     socket.join('room' + data.roomID);
-    //     //if (inWater > 100 || outWater > 100)
-    //     socket.emit('sendMsg', {'msg': 'Hello World!!'});
-    // });
-
 
 });
