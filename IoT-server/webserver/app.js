@@ -51,6 +51,10 @@ module.exports = app;
 var port = 8801;
 var io = require('socket.io').listen(port);
 
+var inWater;
+var outWater;
+var gas;
+
 console.log('server running at ' + port + ' port');
 
 io.sockets.on('connection', function (socket) {
@@ -58,9 +62,9 @@ io.sockets.on('connection', function (socket) {
     console.log('connected');
     socket.on('rasp', function (data) {
         try {
-            var inWater = data.inWater;
-            var outWater = data.outWater;
-            var gas = data.gas;
+            inWater = data.inWater;
+            outWater = data.outWater;
+            gas = data.gas;
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
 
@@ -73,7 +77,9 @@ io.sockets.on('connection', function (socket) {
     socket.on('joinRoom', function (data) {
         console.log('joined room' + data.roomID);
         socket.join('room' + data.roomID);
-    }).emit('sendMsg', {'msg': 'Hello World!!'});
+        //if (inWater > 100 || outWater > 100)
+        socket.emit('sendMsg', {'msg': 'Hello World!!'});
+    });
 
 
 });
