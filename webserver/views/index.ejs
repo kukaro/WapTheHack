@@ -967,6 +967,8 @@
     //
     // LCC DFS 좌표변환 ( code : "toXY"(위경도->좌표, v1:위도, v2:경도), "toLL"(좌표->위경도,v1:x, v2:y) )
     //
+
+    console.log(myLineChart.data.datasets[0].data);
     function dfs_xy_conv(code, v1, v2) {
         var DEGRAD = Math.PI / 180.0;
         var RADDEG = 180.0 / Math.PI;
@@ -1142,7 +1144,6 @@
             } //success func 종료
         });
     }
-
     function realTimeWeather2(nx,ny) {
         //console.log(nx+','+ny);
         var today = new Date();
@@ -1222,17 +1223,20 @@
                 var rain6 = [];/* = jsonObj[0].response.body.items.item[11].fcstValue;*/
                 for(var i = 0,j = 0;i<jsonObj[0].response.body.items.item.length;i++){
                     if(jsonObj[0].response.body.items.item[i].category==='R06') {
-                        rain6[j] = jsonObj[0].response.body.items.item[i].fcstValue;
+                        rain6[j] = (jsonObj[0].response.body.items.item[i].fcstValue)/2;
+                        j=j+1;
+                        rain6[j] = (jsonObj[0].response.body.items.item[i].fcstValue)/2;
                         j=j+1;
                     }
                 }
+                myLineChart.data.datasets[0].data = rain6;  //그래프 값 바꾸기
                 console.log(rainPercentage+','+rain6);
-                $('#rainPer6').html('강수확률 : '+ rainPercentage+'%'+'<br>'+'6시간강수량 : '+rain6+'mm');
+                //$('#rainPer6').html('강수확률 : '+ rainPercentage+'%'+'<br>'+'6시간강수량 : '+rain6+'mm');
                 $.ajax( {url: 'http://localhost:3000/test2'
                     , type: 'Post'
                     , cache: false
                     , data:{'rain6':rain6,'rainPercentage':rainPercentage }
-                });
+                }); //6시간 강수량과 강수확률을 index.js로 넘김
             } //success func 종료
         });
     }

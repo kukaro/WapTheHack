@@ -7,7 +7,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["현재", "1시간 후", "2시간 후", "3시간 후", "4시간 후", "5시간 후", "6시간 후"],
+    labels: ["03", "06", "09", "12", "15", "18", "21","24"],
     datasets: [{
       label: "Sessions",
       lineTension: 0.3,
@@ -20,12 +20,16 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: [50, 60, 70, 65, 80, 87, 90, 93],
+      data: []/*[50, 60, 70, 65, 80, 87, 90, 93]*/,
     }],
   },
   options: {
     scales: {
       xAxes: [{
+        scaleLabel:{
+          display:true,
+            labelString:'시간'
+        },
         time: {
           unit: 'date'
         },
@@ -33,10 +37,14 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 8
         }
       }],
       yAxes: [{
+          scaleLabel:{
+              display:true,
+              labelString:'3시간 강수량(mm)'
+          },
         ticks: {
           min: 0,
           max: 100,
