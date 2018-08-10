@@ -60,10 +60,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         try {
-            socket = IO.socket("http://192.168.43.98:3100");
+            socket = IO.socket("http://192.168.43.36:8801");
+            socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();
-                preJsonObject.addProperty("roomName", "myroom");
+                preJsonObject.addProperty("roomID", "1");
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(preJsonObject.toString());
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     tvMain.setText(tvMain.getText().toString()+jsonObject.get("comment").getAsString());
                 });
             });
-            socket.connect();
+           // socket.connect();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         // 이미 권한이 있을 때
-                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-8201-5102"));
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-2974-1693"));
                         startActivity(intent);
 
                     }
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1000){
             // 사용자가 "허용" 했을 때
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-8201-5102"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-2974-1693"));
 
                 if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
                     startActivity(intent);
