@@ -33,7 +33,7 @@ import static android.Manifest.permission.SEND_SMS;
 public class MainActivity extends AppCompatActivity {
     private Socket socket;
     private TextView textView;
-//    public Button btStop;
+    //    public Button btStop;
     int warningNum;
     String testString;
 
@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------Socket start------------------------------------
 
         try {
-<<<<<<< HEAD
-
-=======
->>>>>>> android_2
             socket = IO.socket("http://www.theceres.net:8801");
             socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
@@ -140,16 +136,14 @@ public class MainActivity extends AppCompatActivity {
             startService(intent);
         }).start();
 
-<<<<<<< HEAD
-        btStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyService.class);
-                onDestroy();
-            }
-        });
-=======
->>>>>>> android_2
+//        btStop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MyService.class);
+//                onDestroy();
+//            }
+//        });
+
         //-----------------------------NOTIFICATION---------------------------------
     }
 }
