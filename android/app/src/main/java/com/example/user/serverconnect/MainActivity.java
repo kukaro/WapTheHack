@@ -47,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------Socket start------------------------------------
 
         try {
-            socket = IO.socket("http://192.168.43.36:8801");
-            socket.connect();
-
             socket = IO.socket("http://10.0.100.98:8801");
 
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
