@@ -100,6 +100,8 @@ io.sockets.on('connection', function (socket) {
                 io.sockets.emit('sendMsg', {'msg': '3'});
             } else if (900 < inWater || 900 < outWater) {
                 io.sockets.emit('sendMsg', {'msg': '4'});
+            } else {
+                io.sockets.emit('sendMsg', {'msg': '0'});
             }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
