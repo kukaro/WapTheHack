@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------Socket start------------------------------------
 
         try {
-<<<<<<< HEAD
-
-=======
->>>>>>> android_2
             socket = IO.socket("http://www.theceres.net:8801");
             socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
@@ -61,24 +57,17 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 socket.emit("joinRoom", jsonObject);
-                socket.emit("test", "a");
-                new Thread(() -> {
-                    socket.on("sendMsg", (Object... msgObjects) -> {
-                        JsonParser jsonParsers = new JsonParser();
-                        JsonObject msgJson = (JsonObject) jsonParsers.parse(msgObjects[0] + "");
-                        System.out.println(msgJson.get("msg").toString());
-                        testString = msgJson.get("msg").toString();
-                        warningNum = 1;
-
-                        try {
-                            System.out.println("try catch");
-                            textView.setText('1');
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }).start();
-
+            }).on("sendMsg", (Object... objects) -> {
+                JsonParser jsonParsers = new JsonParser();
+                JsonObject jsonObject = (JsonObject) jsonParsers.parse(objects[0] + "");
+                System.out.println(jsonObject.get("msg").toString());
+                testString = jsonObject.get("msg").toString();
+                warningNum = 1;
+                try {
+                    textView.setText(testString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
 
         } catch (Exception e) {
@@ -135,21 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
         //-----------------------------NOTIFICATION---------------------------------
 
-        new Thread(() -> {
+        new Thread(()->{
             Intent intent = new Intent(MainActivity.this, MyService.class);
             startService(intent);
         }).start();
 
-<<<<<<< HEAD
-        btStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyService.class);
-                onDestroy();
-            }
-        });
-=======
->>>>>>> android_2
         //-----------------------------NOTIFICATION---------------------------------
     }
 }

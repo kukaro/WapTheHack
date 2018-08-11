@@ -26,39 +26,24 @@ def on_disconnect():
 
 
 def turn_off_gas(*args):
-    print(args)
-    if len(args) is not 0:
-        print(args[0]['send'])
-        letter = args[0]['send']
-        ser.write(letter.encode('ascii'))
+    print(args[0]['send'])
+    letter = args[0]['send']
+    ser.write(letter.encode('ascii'))
 
 
-def turn_off_light(*args):
-    print(args)
-    if len(args) is not 0:
-        print(args[0]['lightoff'])
-        letter = args[0]['lightoff']
-        ser.write(letter.encode('ascii'))
-
-
-with SocketIO('www.theceres.net', 8801) as socketIO:
+with SocketIO('192.168.43.36', 8801) as socketIO:
     socketIO.on('gasOff', turn_off_gas)
-    socketIO.on('lightOff', turn_off_light)
     try:
         while 1:
-            try:
-                response = ser.readline()
-                realResponse = response.decode('utf-8')[:len(response) - 1]
-                print(realResponse)
-                dataArr = realResponse.split(" ")
-                if len(dataArr) < 3: pass
-                inWater = dataArr[0][3:]
-                outWater = dataArr[1][3:]
-                gas = dataArr[2][3:]
-                print(inWater, outWater, gas)
-                socketIO.emit('rasp', {'inWater': inWater, 'outWater': outWater, 'gas': gas})
-                socketIO.wait(seconds=1)
-            except TypeError:
-                pass
+            response = ser.readline()
+            realResponse = response.decode('utf-8')[:len(response) - 1]
+            print(realResponse)
+            dataArr = realResponse.split(" ")
+            inWater = dataArr[0][3:]
+            outWater = dataArr[1][3:]
+            gas = dataArr[2][3:]
+            print(inWater, outWater, gas)
+            socketIO.emit('rasp', {'inWater': inWater, 'outWater': outWater, 'gas': gas})
+            socketIO.wait(seconds=1)
     except KeyboardInterrupt:
         ser.close()

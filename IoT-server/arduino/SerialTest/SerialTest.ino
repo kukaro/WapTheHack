@@ -1,6 +1,6 @@
-const int inWaterPin = A2;
+const int inWaterPin = A0;
 const int outWaterPin = A1;
-const int gasPin = A0;
+const int gasPin = A2;
 const int lampLedPin = 6;
 const int fireLedPin = 7;
 
@@ -12,9 +12,6 @@ char income = 'x';
 
 void setup() {
   Serial.begin(9600);
-  pinMode(inWaterPin, INPUT);
-  pinMode(outWaterPin, INPUT);
-  pinMode(gasPin, INPUT);
   pinMode(lampLedPin, OUTPUT);
   pinMode(fireLedPin, OUTPUT);  
   digitalWrite(lampLedPin, HIGH);
@@ -25,12 +22,8 @@ void loop() {
   if(Serial.available()){
     income = Serial.read();
     if(income=='g'){  //가스 잠그기
-      income = 'x';
-      digitalWrite(fireLedPin, LOW);
-    }
-    if(income=='l'){
-      income = 'x';
-      digitalWrite(lampLedPin, LOW);
+    income = 'x';
+    digitalWrite(fireLedPin, LOW);
     }
   }
   

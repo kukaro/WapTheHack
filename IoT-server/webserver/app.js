@@ -51,10 +51,6 @@ module.exports = app;
 var port = 8801;
 var io = require('socket.io').listen(port);
 
-var inWater;
-var outWater;
-var gas;
-
 console.log('server running at ' + port + ' port');
 
 io.sockets.on('connection', function (socket) {
@@ -62,22 +58,22 @@ io.sockets.on('connection', function (socket) {
     console.log('connected');
     socket.on('rasp', function (data) {
         try {
-            inWater = data.inWater;
-            outWater = data.outWater;
-            gas = data.gas;
-            console.log(inWater, outWater, gas);
+            var inWater = data.inWater;
+            var outWater = data.outWater;
+            var gas = data.gas;
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-            if (inWater > 100 || outWater > 100) {
-                io.sockets.emit('sendMsg', {'msg': 'Hello World!!'});
-            }
+
+            console.log(inWater, outWater, gas);
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
         }
-        socket.on('joinRoom', function (data) {
-            console.log('joined room' + data.roomID);
-            socket.join('room' + data.roomID);
-        });
     });
+
+    socket.on('joinRoom', function (data) {
+        console.log('joined room' + data.roomID);
+        socket.join('room' + data.roomID);
+    }).emit('sendMsg', {'msg': 'Hello World!!'});
+
 
 });
