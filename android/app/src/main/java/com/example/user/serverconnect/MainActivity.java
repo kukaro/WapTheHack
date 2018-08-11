@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                         try {
                             System.out.println("try catch");
-                            textView.setText(testString);
+                            textView.setText('1');
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
