@@ -1,6 +1,5 @@
 package com.example.user.serverconnect;
 
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -125,25 +124,19 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------PERMISSION END----------------------------
 
         //-----------------------------NOTIFICATION---------------------------------
-        btStart = (Button) findViewById(R.id.btStart);
         btStop = (Button) findViewById((R.id.btStop));
 
-        btStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyService.class);
-                Toast.makeText(getApplicationContext(), "Service 시작", Toast.LENGTH_LONG).show();
-                startService(intent);
-            }
-        });
+        new Thread(()->{
+            Intent intent = new Intent(MainActivity.this, MyService.class);
+            startService(intent);
+        }).start();
 
         btStop.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MyService.class);
-                Toast.makeText(getApplicationContext(), "Service 중지", Toast.LENGTH_SHORT).show();
-                stopService(intent);
+                onDestroy();
             }
         });
         //-----------------------------NOTIFICATION---------------------------------
