@@ -99,17 +99,19 @@ io.sockets.on('connection', function (socket) {
             if (gas > 300)
                 socket.emit('gasOff', {'send': 'g'});
             if ((300 < inWater && inWater < 500) || (300 < outWater && outWater < 500)) {
-                io.sockets.emit('sendMsg', {'msg': '1'});
+                socket.emit('sendWarningNum', {'msg': '1'});
             } else if ((500 < inWater && inWater < 700) || (500 < outWater && outWater < 700)) {
-                io.sockets.emit('sendMsg', {'msg': '2'});
+                io.sockets.emit('sendWarningNum', {'msg': '2'});
             } else if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
-                io.sockets.emit('sendMsg', {'msg': '3'});
+                io.sockets.emit('sendWarningNum', {'msg': '3'});
                 socket.emit('lightOff', {'lightoff': 'l'});
+                socket.emit('gasOff', {'send': 'g'});
             } else if (900 < inWater || 900 < outWater) {
-                io.sockets.emit('sendMsg', {'msg': '4'});
+                io.sockets.emit('sendWarningNum', {'msg': '4'});
                 socket.emit('lightOff', {'lightoff': 'l'});
+                socket.emit('gasOff', {'send': 'g'});
             } else {
-                io.sockets.emit('sendMsg', {'msg': '0'});
+                io.sockets.emit('sendWarningNum', {'msg': '0'});
             }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");

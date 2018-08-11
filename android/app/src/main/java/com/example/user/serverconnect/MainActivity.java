@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,16 +60,16 @@ public class MainActivity extends AppCompatActivity {
                 socket.emit("joinRoom", jsonObject);
                 socket.emit("test", "a");
                 new Thread(() -> {
-                    socket.on("sendMsg", (Object... msgObjects) -> {
+                    socket.on("sendWarningNum", (Object... msgObjects) -> {
                         JsonParser jsonParsers = new JsonParser();
                         JsonObject msgJson = (JsonObject) jsonParsers.parse(msgObjects[0] + "");
-                        System.out.println(msgJson.get("msg").toString());
-                        testString = msgJson.get("msg").toString();
-                        warningNum = 1;
+                        Log.e("DEBUG", msgJson.get("msg").toString());
+                        warningNum = Integer.parseInt(msgJson.get("msg").toString());
 
                         try {
-                            System.out.println("try catch");
-                            textView.setText('1');
+                            System.out.println("now in try-catch");
+                            MyService myService = new MyService();
+                            myService.setWarningNum(warningNum);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

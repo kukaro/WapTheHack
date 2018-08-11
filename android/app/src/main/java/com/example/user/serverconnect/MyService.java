@@ -45,6 +45,11 @@ public class MyService extends Service {
     public int Standard_2 = 1;
     public int Standard_3 = 2;
     public int Standard_4 = 3;
+    int warningNum;
+
+    public void setWarningNum(int warningNum) {
+        this.warningNum = warningNum;
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -57,28 +62,28 @@ public class MyService extends Service {
         if (isInit) {
             isInit = false;
             new Thread(() -> {
-                int Risk = 0;
+
                 while (true) {
-                    if (Risk >= Standard_1 && Risk < Standard_2 && Risk < Standard_3 && Risk < Standard_4) {
+                    if (warningNum >= Standard_1 && warningNum < Standard_2 && warningNum < Standard_3 && warningNum < Standard_4) {
                         try {
                             Log.e("TAG", "onStartCommand: "+"asd" );
                             show_1();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (Risk >= Standard_1 && Risk >= Standard_2 && Risk < Standard_3 && Risk < Standard_4) {
+                    } else if (warningNum >= Standard_1 && warningNum >= Standard_2 && warningNum < Standard_3 && warningNum < Standard_4) {
                         try {
                             show_2();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (Risk >= Standard_1 && Risk >= Standard_2 && Risk >= Standard_3 && Risk < Standard_4) {
+                    } else if (warningNum >= Standard_1 && warningNum >= Standard_2 && warningNum >= Standard_3 && warningNum < Standard_4) {
                         try {
                             show_3();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (Risk >= Standard_1 && Risk >= Standard_2 && Risk >= Standard_3 && Risk >= Standard_4) {
+                    } else if (warningNum >= Standard_1 && warningNum >= Standard_2 && warningNum >= Standard_3 && warningNum >= Standard_4) {
                         try {
                             show_4();
                         } catch (IOException e) {
