@@ -5,11 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var cheerio = require('cheerio');
-var request = require('request');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var weatherRouter = require('./routes/weather');
 var loginRouter = require('./routes/login');
 var notFoundRouter = require('./routes/404');
 var blankRouter = require('./routes/blank');
@@ -36,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/weather', weatherRouter);
 app.use('/login', loginRouter);
 app.use('/not-found', notFoundRouter);
 app.use('/blank', blankRouter);
@@ -67,10 +67,6 @@ module.exports = app;
 var port = 8801;
 var io = require('socket.io').listen(port);
 
-var inWater;
-var outWater;
-var gas;
-
 console.log('server running at ' + port + ' port');
 
 io.sockets.on('connection', function (socket) {
@@ -78,18 +74,22 @@ io.sockets.on('connection', function (socket) {
     console.log('connected');
     socket.on('rasp', function (data) {
         try {
-            inWater = data.inWater;
-            outWater = data.outWater;
-            gas = data.gas;
-            console.log(inWater, outWater, gas);
+            var inWater = data.inWater;
+            var outWater = data.outWater;
+            var gas = data.gas;
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-            if (inWater > 500 || outWater > 500) {
-                io.sockets.emit('sendMsg', {'msg': 'Hello World!!'});
-            }
+
+            console.log(inWater, outWater, gas);
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
         }
     });
+
+    socket.on('joinRoom', function (data) {
+        console.log('joined room' + data.roomID);
+        socket.join('room' + data.roomID);
+    }).emit('sendMsg', {'msg': 'Hello World!!'});
+
 
 });
