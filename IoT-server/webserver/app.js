@@ -68,7 +68,7 @@ io.sockets.on('connection', function (socket) {
             console.log(inWater, outWater, gas);
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-            if (inWater > 500 || outWater > 500) {
+            if (inWater > 100 || outWater > 100) {
                 io.sockets.emit('sendMsg', {'msg': 'Hello World!!'});
             }
         } catch (exception) {
