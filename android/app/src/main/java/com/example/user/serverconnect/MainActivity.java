@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 socket.emit("joinRoom", jsonObject);
+                socket.emit("test", "a");
                 new Thread(() -> {
                     socket.on("sendMsg", (Object... msgObjects) -> {
                         JsonParser jsonParsers = new JsonParser();

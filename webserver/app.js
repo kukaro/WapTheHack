@@ -20,10 +20,10 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
-app.all('/*', function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	next();
+app.all('/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
 });
 
 // view engine setup
@@ -94,7 +94,7 @@ io.sockets.on('connection', function (socket) {
             outWater = data.outWater;
             gas = data.gas;
             console.log(inWater, outWater, gas);
-            if (gas > 500)
+            if (gas > 300)
                 socket.emit('gasOff', {'send': 'g'});
             if ((300 < inWater && inWater < 500) || (300 < outWater && outWater < 500)) {
                 io.sockets.emit('sendMsg', {'msg': '1'});
@@ -102,10 +102,10 @@ io.sockets.on('connection', function (socket) {
                 io.sockets.emit('sendMsg', {'msg': '2'});
             } else if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
                 io.sockets.emit('sendMsg', {'msg': '3'});
-                socket.emit('lightOff', {'send': 'l'});
+                socket.emit('lightOff', {'lightoff': 'l'});
             } else if (900 < inWater || 900 < outWater) {
                 io.sockets.emit('sendMsg', {'msg': '4'});
-                socket.emit('lightOff', {'send': 'l'});
+                socket.emit('lightOff', {'lightoff': 'l'});
             } else {
                 io.sockets.emit('sendMsg', {'msg': '0'});
             }
@@ -116,6 +116,10 @@ io.sockets.on('connection', function (socket) {
             console.log('joined room' + data.roomID);
             socket.join('room' + data.roomID);
         });
+
+        io.sockets.on('test', function (data) {
+            console.log(data);
+        })
     });
 
 });
