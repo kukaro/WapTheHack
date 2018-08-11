@@ -1,8 +1,9 @@
 const int inWaterPin = A2;
 const int outWaterPin = A1;
 const int gasPin = A0;
-const int lampLedPin = 6;
+const int lampLedPin = 5;
 const int fireLedPin = 7;
+const int tvLedPin = 6;
 
 int inWater = 0;
 int outWater = 0;
@@ -16,9 +17,11 @@ void setup() {
   pinMode(outWaterPin, INPUT);
   pinMode(gasPin, INPUT);
   pinMode(lampLedPin, OUTPUT);
-  pinMode(fireLedPin, OUTPUT);  
+  pinMode(fireLedPin, OUTPUT); 
+  pinMode(tvLedPin, OUTPUT); 
   digitalWrite(lampLedPin, HIGH);
   digitalWrite(fireLedPin, HIGH);  
+  digitalWrite(tvLedPin, HIGH);
 }
 
 void loop() {
