@@ -28,8 +28,8 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register an Account</div>
         <div class="card-body">
-          <form>
-            <div class="form-group">
+          <form action="/register" onsubmit="return checkPW()" method ="post">
+            <!--<div class="form-group">
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
@@ -67,16 +67,61 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="login.ejs">Register</a>
+            <a class="btn btn-primary btn-block" href="/login">Register</a>-->
+            <p>
+              <label for="input"><strong>name</strong></label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="이름을 입력하시오" required>
+            </p>
+            <p>
+              <label for="input"><strong>ID</strong></label>
+              <input type="text" id="id" name="id" class="form-control" placeholder="ID를 입력하시오" required>
+            </p>
+            <p>
+              <label for="input"><strong>password</strong></label>
+              <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력하시오" required>
+            </p>
+            <p>
+              <label for="input"><strong>confirm PW</strong></label>
+              <input type="password" id="confirmPW" name="confirmPW" class="form-control" placeholder="비밀번호 확인" required>
+            </p>
+            <p id = "pwSame" style="color:red;"></p>
+            <p>
+              <label for="input"><strong>주소</strong></label>
+              <input type="text" id="address" name="address" class="form-control" placeholder="주소를 입력하시오" required>
+            </p>
+            <p>
+              <label for="input"><strong>핸드폰 번호</strong></label>
+              <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="핸드폰 번호를 입력하시오" required>
+            </p>
+            <p>
+              <label for="input"><strong>비상연락처</strong></label>
+              <input type="text" id="emergencyInfo" name="emergencyInfo" class="form-control" placeholder="비상연락처를 입력하시오" required>
+            </p>
+            <p>
+              <input type="radio" name="gender" value="남">남
+              <input type="radio" name="gender" value="여">여
+            </p>
+            <!--<a class="btn btn-primary btn-block" type="submit">Register</a>-->
+            <button class="btn btn-primary btn-block" type="submit">Register</button>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="login.ejs">Login Page</a>
-            <a class="d-block small" href="forgot-password.ejs">Forgot Password?</a>
+            <a class="d-block small mt-3" href="/login">Login Page</a>
+            <a class="d-block small" href="/forgot-password">Forgot Password?</a>
           </div>
         </div>
       </div>
     </div>
+    <script type = 'text/javascript'>
+      function checkPW() {
+          var pw = document.getElementById("password").value;
+          var confirmPw = document.getElementById("confirmPW").value;
 
+          if(pw!=confirmPw){
+              document.getElementById('pwSame').innerHTML = '비밀번호가 틀렸습니다.'
+              return false;
+          }
+      }
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
