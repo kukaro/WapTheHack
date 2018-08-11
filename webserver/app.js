@@ -79,7 +79,8 @@ io.sockets.on('connection', function (socket) {
             var gas = data.gas;
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-
+            if (inWater > 200 || outWater > 200)
+                io.sockets.emit('sendMsg', {'msg': 'Hello World'});
             console.log(inWater, outWater, gas);
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
@@ -89,7 +90,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('joinRoom', function (data) {
         console.log('joined room' + data.roomID);
         socket.join('room' + data.roomID);
-    }).emit('sendMsg', {'msg': 'Hello World!!'});
+    });
 
 
 });
