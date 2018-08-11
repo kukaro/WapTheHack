@@ -82,9 +82,13 @@ console.log('server running at ' + port + ' port');
 io.sockets.on('connection', function (socket) {
     socket.emit('connect');
     console.log('connected');
+
     socket.on('joinRoom', function (data) {
         console.log('joined room' + data.roomID);
         socket.join('room' + data.roomID);
+    });
+    io.sockets.on('test', function (data) {
+        console.log(data);
     });
     socket.on('rasp', function (data) {
         try {
@@ -110,10 +114,6 @@ io.sockets.on('connection', function (socket) {
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
         }
-
-        io.sockets.on('test', function (data) {
-            console.log(data);
-        })
     });
 
 });
