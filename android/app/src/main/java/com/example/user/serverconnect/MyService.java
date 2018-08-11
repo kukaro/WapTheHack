@@ -31,14 +31,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
+
 import static android.Manifest.permission.CALL_PHONE;
 import static android.Manifest.permission.SEND_SMS;
 
 public class MyService extends Service {
     private MediaPlayer mp3;
-    private boolean isInit=true;
+    private boolean isInit = true;
+
     public MyService() {
     }
+
     SoundPool soundp;
     int tom;
     public int Standard_1 = 0;
@@ -64,26 +67,27 @@ public class MyService extends Service {
             new Thread(() -> {
 
                 while (true) {
-                    if (warningNum >= Standard_1 && warningNum < Standard_2 && warningNum < Standard_3 && warningNum < Standard_4) {
+                    Log.e("MyService", "onStartCommand: "+MainActivity.warningNum );
+                    if (MainActivity.warningNum == 1) {
                         try {
-                            Log.e("TAG", "onStartCommand: "+"asd" );
+                            Log.e("TAG", "onStartCommand: " + "asd");
                             show_1();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (warningNum >= Standard_1 && warningNum >= Standard_2 && warningNum < Standard_3 && warningNum < Standard_4) {
+                    } else if (MainActivity.warningNum == 2) {
                         try {
                             show_2();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (warningNum >= Standard_1 && warningNum >= Standard_2 && warningNum >= Standard_3 && warningNum < Standard_4) {
+                    } else if (MainActivity.warningNum == 3) {
                         try {
                             show_3();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (warningNum >= Standard_1 && warningNum >= Standard_2 && warningNum >= Standard_3 && warningNum >= Standard_4) {
+                    } else if (MainActivity.warningNum == 4) {
                         try {
                             show_4();
                         } catch (IOException e) {
@@ -138,9 +142,9 @@ public class MyService extends Service {
         String phoneNo = new String("010-8201-5102");
         String sms = new String("ㅇㅇㅇ 님이 위험합니다 !");
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int smspermissionResult = checkSelfPermission(CALL_PHONE);
-            if (smspermissionResult == PackageManager.PERMISSION_GRANTED){
+            if (smspermissionResult == PackageManager.PERMISSION_GRANTED) {
                 SmsManager smsManager = SmsManager.getDefault();
                 smsManager.sendTextMessage(phoneNo, null, sms, null, null);
             }
@@ -211,43 +215,41 @@ public class MyService extends Service {
         mVibrate.vibrate(2000);
 
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int callpermissionResult = checkSelfPermission(CALL_PHONE);
-            if (callpermissionResult == PackageManager.PERMISSION_GRANTED){
+            if (callpermissionResult == PackageManager.PERMISSION_GRANTED) {
                 Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-8201-5102"));
                 startActivity(call);
-                }
+            }
         }
 
-        Intent intent = new Intent(this,MainActivity.class);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         builder.setContentIntent(pendingIntent);
 
-        Bitmap largeIcon= BitmapFactory.decodeResource(getResources(),
+        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
                 R.drawable.ic_notifications_black_24dp);
         builder.setLargeIcon(largeIcon);
 
         builder.setColor(Color.RED);
-        Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(this,RingtoneManager.TYPE_NOTIFICATION);
+        Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_NOTIFICATION);
         builder.setSound(ringtoneUri);
 
-        NotificationManager manager=(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        manager.notify(1,builder.build());
+        manager.notify(1, builder.build());
 
         mp3 = MediaPlayer.create(this, R.raw.siren);
         mp3.start();
     }
 
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
     }
 
 
-    public void RemoveNotification(View view)
-    {
+    public void RemoveNotification(View view) {
         hide();
     }
 

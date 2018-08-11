@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Socket socket;
     private TextView textView;
     //    public Button btStop;
-    int warningNum;
+    public static int warningNum;
     String testString;
 
     @Override
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             socket = IO.socket("http://www.theceres.net:8801");
-            socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("roomID", "1");
@@ -59,24 +58,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 socket.emit("joinRoom", jsonObject);
                 socket.emit("test", "a");
-                new Thread(() -> {
-                    socket.on("sendWarningNum", (Object... msgObjects) -> {
-                        JsonParser jsonParsers = new JsonParser();
-                        JsonObject msgJson = (JsonObject) jsonParsers.parse(msgObjects[0] + "");
-                        Log.e("DEBUG", msgJson.get("msg").toString());
-                        warningNum = Integer.parseInt(msgJson.get("msg").toString());
-
-                        try {
-                            System.out.println("now in try-catch");
-                            MyService myService = new MyService();
-                            myService.setWarningNum(warningNum);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }).start();
-
             });
+            socket.on("sendWarningNum", (Object... msgObjects) -> {
+                JsonParser jsonParsers = new JsonParser();
+                JsonObject msgJson = (JsonObject) jsonParsers.parse(msgObjects[0] + "");
+                Log.e("DEBUG", msgJson.get("msg").toString());
+                warningNum = Integer.parseInt(msgJson.get("msg").toString().substring(1,2));
+
+                try {
+                    MyService myService = new MyService();
+                    myService.setWarningNum(warningNum);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            socket.connect();
 
         } catch (Exception e) {
             e.printStackTrace();

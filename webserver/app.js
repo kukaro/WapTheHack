@@ -111,7 +111,7 @@ io.sockets.on('connection', function (socket) {
                 socket.emit('lightOff', {'lightoff': 'l'});
                 socket.emit('gasOff', {'send': 'g'});
             } else {
-                io.sockets.emit('sendWarningNum', {'msg': '0'});
+                io.sockets.emit('sendWarningNum', {'msg': 0});
             }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
