@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------Socket start------------------------------------
 
         try {
-            socket = IO.socket("http://192.168.0.213:8801");
+            socket = IO.socket("http://10.0.100.98:8801");
+            socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("roomID", "1");
@@ -77,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 }).start();
 
             });
-            socket.connect();
         } catch (Exception e) {
             e.printStackTrace();
         }
