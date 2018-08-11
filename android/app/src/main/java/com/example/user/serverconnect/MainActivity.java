@@ -33,8 +33,7 @@ import static android.Manifest.permission.SEND_SMS;
 public class MainActivity extends AppCompatActivity {
     private Socket socket;
     private TextView textView;
-    public Button btStart;
-    public Button btStop;
+//    public Button btStop;
     int warningNum;
     String testString;
 
@@ -46,10 +45,8 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------Socket start------------------------------------
 
         try {
-
-            socket = IO.socket("http://192.168.43.36:8801");
+            socket = IO.socket("http://www.theceres.net:8801");
             socket.connect();
-
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("roomID", "1");
@@ -126,21 +123,21 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------PERMISSION END----------------------------
 
         //-----------------------------NOTIFICATION---------------------------------
-        btStop = (Button) findViewById((R.id.btStop));
+//        btStop = (Button) findViewById((R.id.btStop));
 
         new Thread(()->{
             Intent intent = new Intent(MainActivity.this, MyService.class);
             startService(intent);
         }).start();
 
-        btStop.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyService.class);
-                onDestroy();
-            }
-        });
+//        btStop.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MyService.class);
+//                onDestroy();
+//            }
+//        });
         //-----------------------------NOTIFICATION---------------------------------
     }
 }
