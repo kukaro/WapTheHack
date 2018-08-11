@@ -20,12 +20,6 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
-app.all('/*', function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	next();
-});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -50,12 +44,6 @@ app.use('/forgot-password', forgotPasswordRouter);
 app.use('/register', registerRouter);
 app.use('/tables', tablesRouter);
 app.use('/admin', adminRouter);
-
-app.all('/*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
