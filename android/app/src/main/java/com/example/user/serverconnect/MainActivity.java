@@ -123,21 +123,12 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------PERMISSION END----------------------------
 
         //-----------------------------NOTIFICATION---------------------------------
-//        btStop = (Button) findViewById((R.id.btStop));
 
         new Thread(()->{
             Intent intent = new Intent(MainActivity.this, MyService.class);
             startService(intent);
         }).start();
 
-//        btStop.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, MyService.class);
-//                onDestroy();
-//            }
-//        });
         //-----------------------------NOTIFICATION---------------------------------
     }
 }
