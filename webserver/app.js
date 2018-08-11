@@ -99,11 +99,11 @@ io.sockets.on('connection', function (socket) {
             if (gas > 300)
                 socket.emit('gasOff', {'send': 'g'});
 
-            if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
+            if ((400 < inWater && inWater < 700) || (400 < outWater && outWater < 700)) {
                 io.sockets.emit('sendWarningNum', {'msg': '3'});
                 socket.emit('lightOff', {'lightoff': 'l'});
                 socket.emit('gasOff', {'send': 'g'});
-            } else if (900 < inWater || 900 < outWater) {
+            } else if (700 <= inWater || 700 <= outWater) {
                 io.sockets.emit('sendWarningNum', {'msg': '4'});
                 socket.emit('lightOff', {'lightoff': 'l'});
                 socket.emit('gasOff', {'send': 'g'});
