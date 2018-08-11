@@ -47,12 +47,11 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------Socket start------------------------------------
 
         try {
-<<<<<<< HEAD
             socket = IO.socket("http://192.168.43.36:8801");
             socket.connect();
-=======
+
             socket = IO.socket("http://10.0.100.98:8801");
->>>>>>> 3d5bc8e2052f7b6ffa78498b449108e1f018e27f
+
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();
                 preJsonObject.addProperty("roomID", "1");
