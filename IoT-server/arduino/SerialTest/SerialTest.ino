@@ -1,6 +1,6 @@
-const int inWaterPin = A0;
+const int inWaterPin = A2;
 const int outWaterPin = A1;
-const int gasPin = A2;
+const int gasPin = A0;
 const int lampLedPin = 6;
 const int fireLedPin = 7;
 
@@ -12,6 +12,9 @@ char income = 'x';
 
 void setup() {
   Serial.begin(9600);
+  pinMode(inWaterPin, INPUT);
+  pinMode(outWaterPin, INPUT);
+  pinMode(gasPin, INPUT);
   pinMode(lampLedPin, OUTPUT);
   pinMode(fireLedPin, OUTPUT);  
   digitalWrite(lampLedPin, HIGH);

@@ -30,6 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(cors());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
@@ -45,6 +46,12 @@ app.use('/forgot-password', forgotPasswordRouter);
 app.use('/register', registerRouter);
 app.use('/tables', tablesRouter);
 app.use('/admin', adminRouter);
+
+app.all('/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -62,10 +69,15 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+
 module.exports = app;
 
 var port = 8801;
 var io = require('socket.io').listen(port);
+
+var inWater;
+var outWater;
+var gas;
 
 console.log('server running at ' + port + ' port');
 
@@ -74,22 +86,29 @@ io.sockets.on('connection', function (socket) {
     console.log('connected');
     socket.on('rasp', function (data) {
         try {
-            var inWater = data.inWater;
-            var outWater = data.outWater;
-            var gas = data.gas;
+            inWater = data.inWater;
+            outWater = data.outWater;
+            gas = data.gas;
+            console.log(inWater, outWater, gas);
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-
-            console.log(inWater, outWater, gas);
+            if ((300 < inWater && inWater < 500) || (300 < outWater && outWater < 500)) {
+                io.sockets.emit('sendMsg', {'msg': '1'});
+            } else if ((500 < inWater && inWater < 700) || (500 < outWater && outWater < 700)) {
+                io.sockets.emit('sendMsg', {'msg': '2'});
+            } else if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
+                io.sockets.emit('sendMsg', {'msg': '3'});
+            } else (inWater < 900 || outWater < 900)
+            {
+                io.sockets.emit('sendMsg', {'msg': '4'});
+            }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
         }
+        socket.on('joinRoom', function (data) {
+            console.log('joined room' + data.roomID);
+            socket.join('room' + data.roomID);
+        });
     });
-
-    socket.on('joinRoom', function (data) {
-        console.log('joined room' + data.roomID);
-        socket.join('room' + data.roomID);
-    }).emit('sendMsg', {'msg': 'Hello World!!'});
-
 
 });

@@ -31,7 +31,7 @@ def turn_off_gas(*args):
     ser.write(letter.encode('ascii'))
 
 
-with SocketIO('192.168.1.103', 8801) as socketIO:
+with SocketIO('www.theceres.net', 8801) as socketIO:
     socketIO.on('gasOff', turn_off_gas)
     try:
         while 1:
@@ -39,6 +39,7 @@ with SocketIO('192.168.1.103', 8801) as socketIO:
             realResponse = response.decode('utf-8')[:len(response) - 1]
             print(realResponse)
             dataArr = realResponse.split(" ")
+            if len(dataArr) < 3: pass
             inWater = dataArr[0][3:]
             outWater = dataArr[1][3:]
             gas = dataArr[2][3:]
