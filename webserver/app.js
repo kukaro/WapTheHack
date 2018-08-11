@@ -98,7 +98,7 @@ io.sockets.on('connection', function (socket) {
                 io.sockets.emit('sendMsg', {'msg': '2'});
             } else if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
                 io.sockets.emit('sendMsg', {'msg': '3'});
-            } else (900 < inWater || 900 < outWater)
+            } else (inWater < 900 || outWater < 900)
             {
                 io.sockets.emit('sendMsg', {'msg': '4'});
             }
