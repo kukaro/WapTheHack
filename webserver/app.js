@@ -63,3 +63,33 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+var port = 8801;
+var io = require('socket.io').listen(port);
+
+var inWater;
+var outWater;
+var gas;
+
+console.log('server running at ' + port + ' port');
+
+io.sockets.on('connection', function (socket) {
+    socket.emit('connect');
+    console.log('connected');
+    socket.on('rasp', function (data) {
+        try {
+            inWater = data.inWater;
+            outWater = data.outWater;
+            gas = data.gas;
+            console.log(inWater, outWater, gas);
+            if (gas > 500)
+                socket.emit('gasOff', {'send': 'g'});
+            if (inWater > 500 || outWater > 500) {
+                io.sockets.emit('sendMsg', {'msg': 'Hello World!!'});
+            }
+        } catch (exception) {
+            console.log("라즈베리파이에서 데이터 손실");
+        }
+    });
+
+});

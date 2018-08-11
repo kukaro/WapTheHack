@@ -76,8 +76,10 @@ public class PermissionRequester {
 
             return ALREADY_GRANTED; }
     }
-        return NOT_SUPPORT_VERSION; }
-    public static class Builder {
+        return NOT_SUPPORT_VERSION;
+    }
+
+        public static class Builder {
         private PermissionRequester requester;
         public Builder(Activity context) {
             requester = new PermissionRequester(context);
@@ -93,30 +95,43 @@ public class PermissionRequester {
             this.title = title; return this;
         }
         public String getMessage() {
+
             return message;
         }
+
         public Builder setMessage(String message) {
-            this.message = message; return this;
+            this.message = message;
+            return this;
         }
+
         public String getPositiveButtonName() {
+
             return positiveButtonName;
         }
+
         public Builder setPositiveButtonName(String positiveButtonName) {
             this.positiveButtonName = positiveButtonName;
             return this;
         }
+
         public String getNegativeButtonName() {
+
             return negativeButtonName;
         }
+
         public Builder setNegativeButtonName(String negativeButtonName) {
             this.negativeButtonName = negativeButtonName;
             return this;
         }
+
         public PermissionRequester create() {
             this.requester.setBuilder(this);
             return this.requester; }
     }
+
     public interface OnClickDenyButtonListener {
         public void onClick(Activity activity);
     }
+
+
 }

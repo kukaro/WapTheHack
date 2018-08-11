@@ -16,7 +16,6 @@
 * [18.08.07](conference/18.08.07.md)
 * [18.08.08](conference/18.08.08-1.md)
 * [18.08.09](conference/18.08.09.md)
-* [18.08.10](conference/18.08.10-1.md)
 
 ## LIBRARY\_YOUJIN
 
@@ -24,7 +23,6 @@
 * [18.08.07](library_youjin/18.08.07.md)
 * [18.08.08](library_youjin/18.08.08.md)
 * [18.08.09](library_youjin/18.08.09.md)
-* [18.08.10](library_youjin/18.08.10.md)
 
 ## LIBRARY\_JEONGMIN
 
@@ -32,12 +30,12 @@
 * [18.08.07](library_jeongmin/18.08.07.md)
 * [18.08.08](library_jeongmin/18.08.08.md)
 * [18.08.09](library_jeongmin/18.08.09.md)
+* [18.08.10](library_jeongmin/18.08.10.md)
 
 ## LIBRARY\_HYERIM
 
 * [18.08.08](library_hyerim/18.08.08.md)
 * [18.08.09](library_hyerim/18.08.09.md)
-* [18.08.10](library_hyerim/18.08.10.md)
 
 ## LIBRART\_JEONGJIN
 
