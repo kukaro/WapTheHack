@@ -33,8 +33,7 @@ import static android.Manifest.permission.SEND_SMS;
 public class MainActivity extends AppCompatActivity {
     private Socket socket;
     private TextView textView;
-    public Button btStart;
-    public Button btStop;
+//    public Button btStop;
     int warningNum;
     String testString;
 
@@ -46,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
 //-----------------------------Socket start------------------------------------
 
         try {
+<<<<<<< HEAD
 
+=======
+>>>>>>> android_2
             socket = IO.socket("http://www.theceres.net:8801");
             socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 socket.emit("joinRoom", jsonObject);
+                socket.emit("test", "a");
                 new Thread(() -> {
                     socket.on("sendMsg", (Object... msgObjects) -> {
                         JsonParser jsonParsers = new JsonParser();
@@ -131,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
         //-------------------------------PERMISSION END----------------------------
 
         //-----------------------------NOTIFICATION---------------------------------
-        btStop = (Button) findViewById((R.id.btStop));
 
         new Thread(() -> {
             Intent intent = new Intent(MainActivity.this, MyService.class);
             startService(intent);
         }).start();
 
+<<<<<<< HEAD
         btStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
                 onDestroy();
             }
         });
+=======
+>>>>>>> android_2
         //-----------------------------NOTIFICATION---------------------------------
     }
 }
