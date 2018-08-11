@@ -68,12 +68,20 @@ io.sockets.on('connection', function (socket) {
             console.log(inWater, outWater, gas);
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-            if (inWater > 500 || outWater > 500) {
+            if (inWater > 100 || outWater > 100) {
                 io.sockets.emit('sendMsg', {'msg': 'Hello World!!'});
             }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
         }
     });
+
+    socket.on('joinRoom', function (data) {
+        try{
+            console.log('Joined Room' + data.roomID);
+        }catch (e) {
+            console.log("방에 입장하지 못했음.");
+        }
+    })
 
 });
