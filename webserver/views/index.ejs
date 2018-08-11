@@ -307,7 +307,7 @@
                 </div>
                 <!-- End Notification Component -->
 
-<<<<<<< HEAD
+           
                 <!-- Danger Level Chart-->
                 <div class="card col-lg-6 col-md-12 col-sm-12 mb-4">
                     <div class="card-header">
@@ -318,16 +318,6 @@
                         <canvas id="myAreaChart" width="100%" height="60"></canvas>
                     </div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-=======
-            <!-- Danger Level Chart-->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-chart-area"></i>
-                    Danger Level Chart
-                </div>
-                <div class="card-body">
-                    <canvas id="myAreaChart" width="100%" height="30"></canvas>
->>>>>>> android_2
                 </div>
             </div>
             <!-- DataTables Example -->
@@ -426,6 +416,7 @@
         realTimeWeather2(rs.nx, rs.ny);
         console.log(latitude, longitude);
     }
+
     // locationSuccess
 
     function locationError(error) {
@@ -530,7 +521,7 @@
         var day = today.getDate();
         var hours = today.getHours();
         var minutes = today.getMinutes();
-        $('#date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일" +" 이정민님의 종합 위험도 & 예측");
+        $('#date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일" + " 이정민님의 종합 위험도 & 예측");
         //alert(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
         /*
          * 기상청 30분마다 발표
@@ -548,8 +539,8 @@
             }
         }
 
-        if(minutes>=30&&minutes<=40){
-            hours = hours-1;
+        if (minutes >= 30 && minutes <= 40) {
+            hours = hours - 1;
         }
         /* example
          * 9시 -> 09시 변경 필요
@@ -749,11 +740,10 @@
         }
     }
 </script>
-=======
 <script src="js/demo/datatables-demo.js"></script>
 <script src="js/demo/chart-area-demo.js"></script>
->>>>>>> android_2
-
+</div>
+</div>
 </body>
 
 </html>
