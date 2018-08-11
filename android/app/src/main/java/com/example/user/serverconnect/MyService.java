@@ -67,21 +67,8 @@ public class MyService extends Service {
             new Thread(() -> {
 
                 while (true) {
-                    Log.e("MyService", "onStartCommand: "+MainActivity.warningNum );
-                    if (MainActivity.warningNum == 1) {
-                        try {
-                            Log.e("TAG", "onStartCommand: " + "asd");
-                            show_1();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (MainActivity.warningNum == 2) {
-                        try {
-                            show_2();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (MainActivity.warningNum == 3) {
+                    Log.e("MyService", "onStartCommand: " + MainActivity.warningNum);
+                    if (MainActivity.warningNum == 3) {
                         try {
                             show_3();
                         } catch (IOException e) {

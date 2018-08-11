@@ -98,11 +98,8 @@ io.sockets.on('connection', function (socket) {
             console.log(inWater, outWater, gas);
             if (gas > 300)
                 socket.emit('gasOff', {'send': 'g'});
-            if ((300 < inWater && inWater < 500) || (300 < outWater && outWater < 500)) {
-                socket.emit('sendWarningNum', {'msg': '1'});
-            } else if ((500 < inWater && inWater < 700) || (500 < outWater && outWater < 700)) {
-                io.sockets.emit('sendWarningNum', {'msg': '2'});
-            } else if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
+
+            if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
                 io.sockets.emit('sendWarningNum', {'msg': '3'});
                 socket.emit('lightOff', {'lightoff': 'l'});
                 socket.emit('gasOff', {'send': 'g'});
@@ -110,8 +107,6 @@ io.sockets.on('connection', function (socket) {
                 io.sockets.emit('sendWarningNum', {'msg': '4'});
                 socket.emit('lightOff', {'lightoff': 'l'});
                 socket.emit('gasOff', {'send': 'g'});
-            } else {
-                io.sockets.emit('sendWarningNum', {'msg': 0});
             }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");
