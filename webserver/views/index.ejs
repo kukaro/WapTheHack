@@ -142,1127 +142,602 @@
                 <li class="breadcrumb-item">
                     <a href="#">Your Tube</a>
                 </li>
-                <li class="breadcrumb-item active">Overview</li>
+                <li class="breadcrumb-item active" id='date'>Overview</li>
             </ol>
 
             <!-- Icon Cards-->
             <div class="row">
-                <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="col mb-3">
                     <div class="card text-white bg-primary o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
                                 <i class="fas fa-fw fa-tint"></i>
                             </div>
-                            <div class="mr-5">현재 강수량</div>
+                            <div class="mr-5" id="RN1">현재 시간당강수량 : 0.00mm</div>
+                            <p id="rainPer6"></p>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
                             <span class="float-left">View Details</span>
                             <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
+                                    <i class="fas fa-angle-right"></i>
+                                </span>
                         </a>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="col mb-3">
                     <div class="card text-white bg-warning o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
                                 <i class="fas fa-fw fa-list"></i>
                             </div>
-                            <div class="mr-5">위험 지역 등급</div>
+                            <div class="mr-5">위험 지역 등급<br>
+                                <h2>3등급</h2>
+                            </div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
                             <span class="float-left">View Details</span>
                             <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
+                                    <i class="fas fa-angle-right"></i>
+                                </span>
                         </a>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="col mb-3">
                     <div class="card text-white bg-success o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
                                 <i class="fas fa-fw fa-broadcast-tower"></i>
                             </div>
-                            <div class="mr-5">홍수 예보</div>
+                            <div class="mr-5">홍수 예보<br>
+                                <h2>주의보</h2>
+                            </div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
                             <span class="float-left">View Details</span>
                             <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
+                                    <i class="fas fa-angle-right"></i>
+                                </span>
                         </a>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="col mb-3">
                     <div class="card text-white bg-danger o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
-                                <i class="fas fa-fw fa-life-ring"></i>
+                                <i class="fas fa-fw fa-exclamation"></i>
                             </div>
-                            <div class="mr-5">현재 수위</div>
+                            <div class="mr-5">위험 강수량<br>
+                                <h2>84.2mm</h2>
+                            </div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="#">
                             <span class="float-left">View Details</span>
                             <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
+                                    <i class="fas fa-angle-right"></i>
+                                </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="card text-white bg-info o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fas fa-fw fa-cloud"></i>
+                            </div>
+                            <div class="mr-5" id="weatherState">현재날씨 :</div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
+                                    <i class="fas fa-angle-right"></i>
+                                </span>
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- Notification Component -->
-            <div class="col-lg-5 col-md-12 col-sm-12 mb-4">
-                <div class="card card-small blog-comments">
-                    <div class="card-header border-bottom">
-                        <h6 class="m-0">Notification</h6>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="blog-comments__item d-flex p-3">
-                            <div class="blog-comments__avatar mr-3">
-                                <img src="images/avatars/1.jpg" alt="User avatar"/></div>
-                            <div class="blog-comments__content">
-                                <div class="blog-comments__meta text-muted">
-                                    <a class="text-secondary" href="#">James Johnson</a> on
-                                    <a class="text-secondary" href="#">Hello World!</a>
-                                    <span class="text-muted">– 3 days ago</span>
-                                </div>
-                                <p class="m-0 my-1 mb-2 text-muted">Well, the way they make shows is, they make one show
-                                    ...</p>
-                                <div class="blog-comments__actions">
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-success">
-                                <i class="material-icons">check</i>
-                              </span> Approve
-                                        </button>
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-danger">
-                                <i class="material-icons">clear</i>
-                              </span> Reject
-                                        </button>
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-light">
-                                <i class="material-icons">more_vert</i>
-                              </span> Edit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-comments__item d-flex p-3">
-                            <div class="blog-comments__avatar mr-3">
-                                <img src="images/avatars/2.jpg" alt="User avatar"/></div>
-                            <div class="blog-comments__content">
-                                <div class="blog-comments__meta text-muted">
-                                    <a class="text-secondary" href="#">James Johnson</a> on
-                                    <a class="text-secondary" href="#">Hello World!</a>
-                                    <span class="text-muted">– 4 days ago</span>
-                                </div>
-                                <p class="m-0 my-1 mb-2 text-muted">After the avalanche, it took us a week to climb out.
-                                    Now...</p>
-                                <div class="blog-comments__actions">
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-success">
-                                <i class="material-icons">check</i>
-                              </span> Approve
-                                        </button>
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-danger">
-                                <i class="material-icons">clear</i>
-                              </span> Reject
-                                        </button>
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-light">
-                                <i class="material-icons">more_vert</i>
-                              </span> Edit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-comments__item d-flex p-3">
-                            <div class="blog-comments__avatar mr-3">
-                                <img src="images/avatars/3.jpg" alt="User avatar"/></div>
-                            <div class="blog-comments__content">
-                                <div class="blog-comments__meta text-muted">
-                                    <a class="text-secondary" href="#">James Johnson</a> on
-                                    <a class="text-secondary" href="#">Hello World!</a>
-                                    <span class="text-muted">– 5 days ago</span>
-                                </div>
-                                <p class="m-0 my-1 mb-2 text-muted">My money's in that office, right? If she start
-                                    giving me...</p>
-                                <div class="blog-comments__actions">
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-success">
-                                <i class="material-icons">check</i>
-                              </span> Approve
-                                        </button>
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-danger">
-                                <i class="material-icons">clear</i>
-                              </span> Reject
-                                        </button>
-                                        <button type="button" class="btn btn-white">
-                              <span class="text-light">
-                                <i class="material-icons">more_vert</i>
-                              </span> Edit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer border-top">
-                        <div class="row">
-                            <div class="col text-center view-report">
-                                <button type="submit" class="btn btn-white">View All Comments</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-6">
+
+                </div>
+                <div class="col-lg-6">
+
                 </div>
             </div>
-            <!-- End Notification Component -->
 
-            <<<<<<< HEAD
-            <!-- Danger Level Chart-->
-            <div class="card col-lg-6 col-md-12 col-sm-12 mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area"></i>
-                    강수량 & 강수확률
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 mb-4">
+                    <div class="card card-small blog-comments">
+                        <div class="card-header border-bottom">
+                            <h6 class="m-0">Notification</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="blog-comments__item d-flex p-3">
+                                <i class="fa fa-bell w3-text-red w3-large"></i>
+                                <div class="blog-comments__content">
+                                    <p class="m-0 my-1 mb-2 text-muted"><strong>실시간 침수위험도가 80%를 넘었습니다. 119에 구조를
+                                            요청하였습니다.</strong></p>
+                                    <div class="blog-comments__actions">
+                                        <div class="btn-group btn-group-sm">
+                                                    <span class="text-success">
+                                                        <i class="material-icons">18.08.10 20:43</i>
+                                                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-comments__item d-flex p-3">
+                                <i class="fa fa-bell w3-text-red w3-large"></i>
+                                <div class="blog-comments__content">
+                                    <p class="m-0 my-1 mb-2 text-muted"><strong>침수 위험 강수량에 근접하였으니 각별히 주의하시길
+                                            바랍니다.</strong></p>
+                                    <div class="blog-comments__actions">
+                                        <div class="btn-group btn-group-sm">
+                                                    <span class="text-success">
+                                                        <i class="material-icons">18.08.10 19:56</i>
+                                                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-comments__item d-flex p-3">
+                                <i class="fa fa-bell w3-text-red w3-large"></i>
+                                <div class="blog-comments__content">
+                                    <p class="m-0 my-1 mb-2 text-muted"><strong>홍수주의보가 발령되었습니다. 외출을 삼가해주세요.</strong></p>
+                                    <div class="blog-comments__actions">
+                                        <div class="btn-group btn-group-sm">
+                                            <span class="text-success">
+                                                        <i class="material-icons">18.08.10 15:43</i>
+                                                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-top">
+                            <div class="row">
+                                <div class="col text-center view-report">
+                                    <button type="submit" class="btn btn-white">View All Comments</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <canvas id="myAreaChart" width="100%" height="60"></canvas>
-                </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                =======
+                <!-- End Notification Component -->
+
                 <!-- Danger Level Chart-->
-                <div class="card mb-3">
+                <div class="card col-lg-6 col-md-12 col-sm-12 mb-4">
                     <div class="card-header">
                         <i class="fas fa-chart-area"></i>
-                        Danger Level Chart
+                        강수량 & 강수확률
                     </div>
                     <div class="card-body">
-                        <canvas id="myAreaChart" width="100%" height="30"></canvas>
-                        >>>>>>> android_2
+                        <canvas id="myAreaChart" width="100%" height="60"></canvas>
                     </div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
-
-                <!-- DataTables Example -->
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fas fa-table"></i>
-                        Data Table Example
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>63</td>
-                                    <td>2011/07/25</td>
-                                    <td>$170,750</td>
-                                </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                    <td>2009/01/12</td>
-                                    <td>$86,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Cedric Kelly</td>
-                                    <td>Senior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                    <td>2012/03/29</td>
-                                    <td>$433,060</td>
-                                </tr>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                    <td>$162,700</td>
-                                </tr>
-                                <tr>
-                                    <td>Brielle Williamson</td>
-                                    <td>Integration Specialist</td>
-                                    <td>New York</td>
-                                    <td>61</td>
-                                    <td>2012/12/02</td>
-                                    <td>$372,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Herrod Chandler</td>
-                                    <td>Sales Assistant</td>
-                                    <td>San Francisco</td>
-                                    <td>59</td>
-                                    <td>2012/08/06</td>
-                                    <td>$137,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Rhona Davidson</td>
-                                    <td>Integration Specialist</td>
-                                    <td>Tokyo</td>
-                                    <td>55</td>
-                                    <td>2010/10/14</td>
-                                    <td>$327,900</td>
-                                </tr>
-                                <tr>
-                                    <td>Colleen Hurst</td>
-                                    <td>Javascript Developer</td>
-                                    <td>San Francisco</td>
-                                    <td>39</td>
-                                    <td>2009/09/15</td>
-                                    <td>$205,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Sonya Frost</td>
-                                    <td>Software Engineer</td>
-                                    <td>Edinburgh</td>
-                                    <td>23</td>
-                                    <td>2008/12/13</td>
-                                    <td>$103,600</td>
-                                </tr>
-                                <tr>
-                                    <td>Jena Gaines</td>
-                                    <td>Office Manager</td>
-                                    <td>London</td>
-                                    <td>30</td>
-                                    <td>2008/12/19</td>
-                                    <td>$90,560</td>
-                                </tr>
-                                <tr>
-                                    <td>Quinn Flynn</td>
-                                    <td>Support Lead</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                    <td>2013/03/03</td>
-                                    <td>$342,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Charde Marshall</td>
-                                    <td>Regional Director</td>
-                                    <td>San Francisco</td>
-                                    <td>36</td>
-                                    <td>2008/10/16</td>
-                                    <td>$470,600</td>
-                                </tr>
-                                <tr>
-                                    <td>Haley Kennedy</td>
-                                    <td>Senior Marketing Designer</td>
-                                    <td>London</td>
-                                    <td>43</td>
-                                    <td>2012/12/18</td>
-                                    <td>$313,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Tatyana Fitzpatrick</td>
-                                    <td>Regional Director</td>
-                                    <td>London</td>
-                                    <td>19</td>
-                                    <td>2010/03/17</td>
-                                    <td>$385,750</td>
-                                </tr>
-                                <tr>
-                                    <td>Michael Silva</td>
-                                    <td>Marketing Designer</td>
-                                    <td>London</td>
-                                    <td>66</td>
-                                    <td>2012/11/27</td>
-                                    <td>$198,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Paul Byrd</td>
-                                    <td>Chief Financial Officer (CFO)</td>
-                                    <td>New York</td>
-                                    <td>64</td>
-                                    <td>2010/06/09</td>
-                                    <td>$725,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Gloria Little</td>
-                                    <td>Systems Administrator</td>
-                                    <td>New York</td>
-                                    <td>59</td>
-                                    <td>2009/04/10</td>
-                                    <td>$237,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Bradley Greer</td>
-                                    <td>Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Dai Rios</td>
-                                    <td>Personnel Lead</td>
-                                    <td>Edinburgh</td>
-                                    <td>35</td>
-                                    <td>2012/09/26</td>
-                                    <td>$217,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Jenette Caldwell</td>
-                                    <td>Development Lead</td>
-                                    <td>New York</td>
-                                    <td>30</td>
-                                    <td>2011/09/03</td>
-                                    <td>$345,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Yuri Berry</td>
-                                    <td>Chief Marketing Officer (CMO)</td>
-                                    <td>New York</td>
-                                    <td>40</td>
-                                    <td>2009/06/25</td>
-                                    <td>$675,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Caesar Vance</td>
-                                    <td>Pre-Sales Support</td>
-                                    <td>New York</td>
-                                    <td>21</td>
-                                    <td>2011/12/12</td>
-                                    <td>$106,450</td>
-                                </tr>
-                                <tr>
-                                    <td>Doris Wilder</td>
-                                    <td>Sales Assistant</td>
-                                    <td>Sidney</td>
-                                    <td>23</td>
-                                    <td>2010/09/20</td>
-                                    <td>$85,600</td>
-                                </tr>
-                                <tr>
-                                    <td>Angelica Ramos</td>
-                                    <td>Chief Executive Officer (CEO)</td>
-                                    <td>London</td>
-                                    <td>47</td>
-                                    <td>2009/10/09</td>
-                                    <td>$1,200,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Gavin Joyce</td>
-                                    <td>Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>42</td>
-                                    <td>2010/12/22</td>
-                                    <td>$92,575</td>
-                                </tr>
-                                <tr>
-                                    <td>Jennifer Chang</td>
-                                    <td>Regional Director</td>
-                                    <td>Singapore</td>
-                                    <td>28</td>
-                                    <td>2010/11/14</td>
-                                    <td>$357,650</td>
-                                </tr>
-                                <tr>
-                                    <td>Brenden Wagner</td>
-                                    <td>Software Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>28</td>
-                                    <td>2011/06/07</td>
-                                    <td>$206,850</td>
-                                </tr>
-                                <tr>
-                                    <td>Fiona Green</td>
-                                    <td>Chief Operating Officer (COO)</td>
-                                    <td>San Francisco</td>
-                                    <td>48</td>
-                                    <td>2010/03/11</td>
-                                    <td>$850,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Shou Itou</td>
-                                    <td>Regional Marketing</td>
-                                    <td>Tokyo</td>
-                                    <td>20</td>
-                                    <td>2011/08/14</td>
-                                    <td>$163,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Michelle House</td>
-                                    <td>Integration Specialist</td>
-                                    <td>Sidney</td>
-                                    <td>37</td>
-                                    <td>2011/06/02</td>
-                                    <td>$95,400</td>
-                                </tr>
-                                <tr>
-                                    <td>Suki Burks</td>
-                                    <td>Developer</td>
-                                    <td>London</td>
-                                    <td>53</td>
-                                    <td>2009/10/22</td>
-                                    <td>$114,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Prescott Bartlett</td>
-                                    <td>Technical Author</td>
-                                    <td>London</td>
-                                    <td>27</td>
-                                    <td>2011/05/07</td>
-                                    <td>$145,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Gavin Cortez</td>
-                                    <td>Team Leader</td>
-                                    <td>San Francisco</td>
-                                    <td>22</td>
-                                    <td>2008/10/26</td>
-                                    <td>$235,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Martena Mccray</td>
-                                    <td>Post-Sales support</td>
-                                    <td>Edinburgh</td>
-                                    <td>46</td>
-                                    <td>2011/03/09</td>
-                                    <td>$324,050</td>
-                                </tr>
-                                <tr>
-                                    <td>Unity Butler</td>
-                                    <td>Marketing Designer</td>
-                                    <td>San Francisco</td>
-                                    <td>47</td>
-                                    <td>2009/12/09</td>
-                                    <td>$85,675</td>
-                                </tr>
-                                <tr>
-                                    <td>Howard Hatfield</td>
-                                    <td>Office Manager</td>
-                                    <td>San Francisco</td>
-                                    <td>51</td>
-                                    <td>2008/12/16</td>
-                                    <td>$164,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Hope Fuentes</td>
-                                    <td>Secretary</td>
-                                    <td>San Francisco</td>
-                                    <td>41</td>
-                                    <td>2010/02/12</td>
-                                    <td>$109,850</td>
-                                </tr>
-                                <tr>
-                                    <td>Vivian Harrell</td>
-                                    <td>Financial Controller</td>
-                                    <td>San Francisco</td>
-                                    <td>62</td>
-                                    <td>2009/02/14</td>
-                                    <td>$452,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Timothy Mooney</td>
-                                    <td>Office Manager</td>
-                                    <td>London</td>
-                                    <td>37</td>
-                                    <td>2008/12/11</td>
-                                    <td>$136,200</td>
-                                </tr>
-                                <tr>
-                                    <td>Jackson Bradshaw</td>
-                                    <td>Director</td>
-                                    <td>New York</td>
-                                    <td>65</td>
-                                    <td>2008/09/26</td>
-                                    <td>$645,750</td>
-                                </tr>
-                                <tr>
-                                    <td>Olivia Liang</td>
-                                    <td>Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2011/02/03</td>
-                                    <td>$234,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Bruno Nash</td>
-                                    <td>Software Engineer</td>
-                                    <td>London</td>
-                                    <td>38</td>
-                                    <td>2011/05/03</td>
-                                    <td>$163,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Sakura Yamamoto</td>
-                                    <td>Support Engineer</td>
-                                    <td>Tokyo</td>
-                                    <td>37</td>
-                                    <td>2009/08/19</td>
-                                    <td>$139,575</td>
-                                </tr>
-                                <tr>
-                                    <td>Thor Walton</td>
-                                    <td>Developer</td>
-                                    <td>New York</td>
-                                    <td>61</td>
-                                    <td>2013/08/11</td>
-                                    <td>$98,540</td>
-                                </tr>
-                                <tr>
-                                    <td>Finn Camacho</td>
-                                    <td>Support Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>47</td>
-                                    <td>2009/07/07</td>
-                                    <td>$87,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Serge Baldwin</td>
-                                    <td>Data Coordinator</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2012/04/09</td>
-                                    <td>$138,575</td>
-                                </tr>
-                                <tr>
-                                    <td>Zenaida Frank</td>
-                                    <td>Software Engineer</td>
-                                    <td>New York</td>
-                                    <td>63</td>
-                                    <td>2010/01/04</td>
-                                    <td>$125,250</td>
-                                </tr>
-                                <tr>
-                                    <td>Zorita Serrano</td>
-                                    <td>Software Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>56</td>
-                                    <td>2012/06/01</td>
-                                    <td>$115,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Jennifer Acosta</td>
-                                    <td>Junior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>43</td>
-                                    <td>2013/02/01</td>
-                                    <td>$75,650</td>
-                                </tr>
-                                <tr>
-                                    <td>Cara Stevens</td>
-                                    <td>Sales Assistant</td>
-                                    <td>New York</td>
-                                    <td>46</td>
-                                    <td>2011/12/06</td>
-                                    <td>$145,600</td>
-                                </tr>
-                                <tr>
-                                    <td>Hermione Butler</td>
-                                    <td>Regional Director</td>
-                                    <td>London</td>
-                                    <td>47</td>
-                                    <td>2011/03/21</td>
-                                    <td>$356,250</td>
-                                </tr>
-                                <tr>
-                                    <td>Lael Greer</td>
-                                    <td>Systems Administrator</td>
-                                    <td>London</td>
-                                    <td>21</td>
-                                    <td>2009/02/27</td>
-                                    <td>$103,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonas Alexander</td>
-                                    <td>Developer</td>
-                                    <td>San Francisco</td>
-                                    <td>30</td>
-                                    <td>2010/07/14</td>
-                                    <td>$86,500</td>
-                                </tr>
-                                <tr>
-                                    <td>Shad Decker</td>
-                                    <td>Regional Director</td>
-                                    <td>Edinburgh</td>
-                                    <td>51</td>
-                                    <td>2008/11/13</td>
-                                    <td>$183,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Michael Bruce</td>
-                                    <td>Javascript Developer</td>
-                                    <td>Singapore</td>
-                                    <td>29</td>
-                                    <td>2011/06/27</td>
-                                    <td>$183,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Donna Snider</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                </div>
-
-
             </div>
-            <!-- /.container-fluid -->
-
-            <!-- Sticky Footer -->
-            <footer class="sticky-footer">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright © 2018 남양주 해커톤 Your Tube</span>
-                    </div>
-                </div>
-            </footer>
-
+            <!-- DataTables Example -->
         </div>
-        <!-- /.content-wrapper -->
+        <!-- /.container-fluid -->
 
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/login">Logout</a>
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright © 2018 남양주 해커톤 Your Tube</span>
                 </div>
             </div>
-        </div>
+        </footer>
+
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Page level plugin JavaScript-->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
-
-    <!-- Demo scripts for this page-->
-
-    <script src="js/demo/datatables-demo.js">
-    </script>
-    <script src="js/demo/chart-area-demo.js">
-    </script>
-    <script src="js/demo/chart-bar-demo.js">
-    </script>
-    <script type="text/javascript">
-        getLocation();
-
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(locationSuccess, locationError, geo_options);
-            } else {
-                console.log("지오 로케이션 없음")
-            }
-        };
-
-        // getLocation
-
-        function locationSuccess(p) {
-            var latitude = p.coords.latitude,
-                longitude = p.coords.longitude;
-            var rs = dfs_xy_conv("toXY", latitude, longitude);
-            // 위도/경도 -> 기상청 좌표x / 좌표 y 변환
-            realTimeWeather(rs.nx, rs.ny);
-            realTimeWeather2(rs.nx, rs.ny);
-            console.log(latitude, longitude);
-        }
-
-        // locationSuccess
-
-        function locationError(error) {
-            var errorTypes = {
-                0: "error",
-                1: "Not allowed",
-                2: "Unable to track location",
-                3: "Response timeout"
-            };
-            var errorMsg = errorTypes[error.code];
-            console.log(errorMsg)
-        }
-
-        // locationError
-
-        var geo_options = {
-            enableHighAccuracy: true,
-            maximumAge: 30000,
-            timeout: 27000
-        };
-        // geo_options
-
-        // LCC DFS 좌표변환을 위한 기초 자료
-        //
-        var RE = 6371.00877; // 지구 반경(km)
-        var GRID = 5.0; // 격자 간격(km)
-        var SLAT1 = 30.0; // 투영 위도1(degree)
-        var SLAT2 = 60.0; // 투영 위도2(degree)
-        var OLON = 126.0; // 기준점 경도(degree)
-        var OLAT = 38.0; // 기준점 위도(degree)
-        var XO = 43; // 기준점 X좌표(GRID)
-        var YO = 136; // 기1준점 Y좌표(GRID)
-        //
-        // LCC DFS 좌표변환 ( code : "toXY"(위경도->좌표, v1:위도, v2:경도), "toLL"(좌표->위경도,v1:x, v2:y) )
-        //
-
-        console.log(myLineChart.data.datasets[0].data);
-
-        function dfs_xy_conv(code, v1, v2) {
-            var DEGRAD = Math.PI / 180.0;
-            var RADDEG = 180.0 / Math.PI;
-
-            var re = RE / GRID;
-            var slat1 = SLAT1 * DEGRAD;
-            var slat2 = SLAT2 * DEGRAD;
-            var olon = OLON * DEGRAD;
-            var olat = OLAT * DEGRAD;
-
-            var sn = Math.tan(Math.PI * 0.25 + slat2 * 0.5) / Math.tan(Math.PI * 0.25 + slat1 * 0.5);
-            sn = Math.log(Math.cos(slat1) / Math.cos(slat2)) / Math.log(sn);
-            var sf = Math.tan(Math.PI * 0.25 + slat1 * 0.5);
-            sf = Math.pow(sf, sn) * Math.cos(slat1) / sn;
-            var ro = Math.tan(Math.PI * 0.25 + olat * 0.5);
-            ro = re * sf / Math.pow(ro, sn);
-            var rs = {};
-            if (code == "toXY") {
-
-                rs['lat'] = v1;
-                rs['lng'] = v2;
-                var ra = Math.tan(Math.PI * 0.25 + (v1) * DEGRAD * 0.5);
-                ra = re * sf / Math.pow(ra, sn);
-                var theta = v2 * DEGRAD - olon;
-                if (theta > Math.PI) theta -= 2.0 * Math.PI;
-                if (theta < -Math.PI) theta += 2.0 * Math.PI;
-                theta *= sn;
-                rs['nx'] = Math.floor(ra * Math.sin(theta) + XO + 0.5);
-                rs['ny'] = Math.floor(ro - ra * Math.cos(theta) + YO + 0.5);
-            } else {
-                rs['nx'] = v1;
-                rs['ny'] = v2;
-                var xn = v1 - XO;
-                var yn = ro - v2 + YO;
-                ra = Math.sqrt(xn * xn + yn * yn);
-                if (sn < 0.0) -ra;
-                var alat = Math.pow((re * sf / ra), (1.0 / sn));
-                alat = 2.0 * Math.atan(alat) - Math.PI * 0.5;
-
-                if (Math.abs(xn) <= 0.0) {
-                    theta = 0.0;
-                } else {
-                    if (Math.abs(yn) <= 0.0) {
-                        theta = Math.PI * 0.5;
-                        if (xn < 0.0) -theta;
-                    } else theta = Math.atan2(xn, yn);
-                }
-                var alon = theta / sn + olon;
-                rs['lat'] = alat * RADDEG;
-                rs['lng'] = alon * RADDEG;
-            }
-            return rs;
-        }
-
-        // dfs_xy_conv
-
-
-        function realTimeWeather(nx, ny) {
-            console.log(nx + ',', ny);
-            var today = new Date();
-            var week = new Array('일', '월', '화', '수', '목', '금', '토');
-            var year = today.getFullYear();
-            var month = today.getMonth() + 1;
-            var day = today.getDate();
-            var hours = today.getHours();
-            var minutes = today.getMinutes();
-            $('#date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일" + " 이정민님의 종합 위험도 & 예측");
-            //alert(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
-            /*
-             * 기상청 30분마다 발표
-             * 30분보다 작으면, 한시간 전 hours 값
-             */
-            if (minutes < 30) {
-                hours = hours - 1;
-                if (hours < 0) {
-                    // 자정 이전은 전날로 계산
-                    today.setDate(today.getDate() - 1);
-                    day = today.getDate();
-                    month = today.getMonth() + 1;
-                    year = today.getFullYear();
-                    hours = 23;
-                }
-            }
-
-            if (minutes >= 30 && minutes <= 40) {
-                hours = hours - 1;
-            }
-            /* example
-             * 9시 -> 09시 변경 필요
-             */
-            if (hours < 10) {
-                hours = '0' + hours;
-            }
-            if (month < 10) {
-                month = '0' + month;
-            }
-            if (day < 10) {
-                day = '0' + day;
-            }
-            today = year + "" + month + "" + day;
-            /* 좌표 */
-            /*var _nx = 98,//x좌표,
-                _ny = 75,//y좌표,*/
-            var apikey = "PG8sCezIEVyAJJCkSMeINV40rmHpB%2F32NSAIzyM4L2%2FPjjS7pFcDSNCWdlcZ17zgNv4pQm7UPMcppuYCUj30%2Bw%3D%3D",
-                ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastGrib";
-            ForecastGribURL += "?ServiceKey=" + apikey;
-            ForecastGribURL += "&base_date=" + today;
-            ForecastGribURL += "&base_time=" + hours + "00";
-            ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
-            ForecastGribURL += "&pageNo=1&numOfRows=7";
-            ForecastGribURL += "&_type=json";
-            console.log(ForecastGribURL);
-            $.ajax({
-                url: ForecastGribURL,
-                type: 'GET',
-                cache: false
-                // ,dataType:'json'
-                ,
-                error: function (request, error) {
-                    console.log(arguments);
-                    alert("Cant do because:" + error);
-                },
-                success: function (data, textStatus, jqXHR) {
-                    //alert("Done!")
-                    var myXML = rplLine(jqXHR.responseText);
-                    var result = myXML;
-                    //console.log(result);
-                    var jsonObj = $.parseJSON('[' + result + ']');
-                    var rainState = jsonObj[0].response.body.items.item[1].obsrValue;
-                    var rain = jsonObj[0].response.body.items.item[3].obsrValue;
-                    var sky = jsonObj[0].response.body.items.item[4].obsrValue;
-                    var temperature = jsonObj[0].response.body.items.item[5].obsrValue;
-                    var weather;
-                    $('#temperature').html(temperature.toFixed(1) + " ℃");
-                    $('#RN1').html("시간당강수량" + '<h2>' + rain + "mm");
-                    if (rainState != 0) {
-                        switch (rain_state) {
-                            case 1:
-                                weather = '비';
-                                $('#weatherState').html("현재날씨" + '<br>' + "<h2>비" + '<br>' + temperature.toFixed(1) + " ℃");
-                                break;
-                            case 2:
-                                weather = '비/눈';
-                                $('#weatherState').html("현재날씨" + '<br>' + "<h2>비/눈</h1>" + '<br>' + temperature.toFixed(1) + " ℃");
-                                break;
-                            case 3:
-                                weather = '눈';
-                                $('#weatherState').html("현재날씨" + '<br>' + "<h2>눈" + '<br>' + temperature.toFixed(1) + " ℃");
-                                break;
-                        }
-                    } else {
-                        switch (sky) {
-                            case 1:
-                                weather = '맑음';
-                                $('#weatherState').html("현재날씨" + '<br>' + "<h2>맑음" + '<br>' + temperature.toFixed(1) + " ℃");
-                                break;
-                            case 2:
-                                weather = '구름조금';
-                                $('#weatherState').html("현재날씨" + '<br>' + "<h2>구름조금" + '<br>' + temperature.toFixed(1) + " ℃");
-                                break;
-                            case 3:
-                                weather = '구름많음';
-                                $('#weatherState').html("현재날씨" + '<br>' + "<h2>구름많음 " + '<br>' + temperature.toFixed(1) + " ℃");
-                                break;
-                            case 4:
-                                weather = '흐림';
-                                $('#weatherState').html("현재날씨" + '<br>' + "<h2>흐림" + '<br>' + temperature.toFixed(1) + " ℃");
-                                break;
-                        }
-                    } //if 종료
-                    $.ajax({
-                        url: 'http://localhost:3000/test',
-                        type: 'Post',
-                        cache: false,
-                        data: {
-                            'rain': rain,
-                            'weather': weather,
-                            'temperature': temperature
-                        }
-                    });
-                } //success func 종료
-            });
-        }
-
-        function realTimeWeather2(nx, ny) {
-            //console.log(nx+','+ny);
-            var today = new Date();
-            var week = new Array('일', '월', '화', '수', '목', '금', '토');
-            var year = today.getFullYear();
-            var month = today.getMonth() + 1;
-            var day = today.getDate();
-            var hours = today.getHours();
-            var minutes = today.getMinutes();
-            $('.weather-date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
-            /*
-             * 기상청 30분마다 발표
-             * 30분보다 작으면, 한시간 전 hours 값
-             */
-            day = day - 1;
-            hours = 23;
-
-            /* example
-             * 9시 -> 09시 변경 필요
-             */
-            if (hours < 10) {
-                hours = '0' + hours;
-            }
-            if (month < 10) {
-                month = '0' + month;
-            }
-            if (day < 10) {
-                day = '0' + day;
-            }
-            today = year + "" + month + "" + day;
-            /* 좌표 */
-            /*var _nx = 98,//x좌표,
-                _ny = 75,//y좌표,*/
-            var apikey = "PG8sCezIEVyAJJCkSMeINV40rmHpB%2F32NSAIzyM4L2%2FPjjS7pFcDSNCWdlcZ17zgNv4pQm7UPMcppuYCUj30%2Bw%3D%3D",
-                ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
-            ForecastGribURL += "?ServiceKey=" + apikey;
-            ForecastGribURL += "&base_date=" + today;
-            ForecastGribURL += "&base_time=" + hours + "00";
-            ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
-            ForecastGribURL += "&pageNo=1&numOfRows=82";
-            ForecastGribURL += "&_type=json";
-            console.log(ForecastGribURL);
-            $.ajax({
-                url: ForecastGribURL,
-                type: 'GET',
-                cache: false
-                // ,dataType:'json'
-                ,
-                error: function (request, error) {
-                    console.log(arguments);
-                    alert("Cant do because:" + error);
-                },
-                success: function (data, textStatus, jqXHR) {
-                    //alert("Done!")
-                    var myXML = rplLine(jqXHR.responseText);
-                    var result = myXML;
-                    /*console.log(result);*/
-                    var jsonObj = $.parseJSON('[' + result + ']');
-                    var rainPercentage = [];
-                    /* = jsonObj[0].response.body.items.item[9].fcstValue;*/
-                    for (var i = 0, j = 0; i < jsonObj[0].response.body.items.item.length; i++) {
-                        if (jsonObj[0].response.body.items.item[i].category == 'POP') {
-                            rainPercentage[j] = jsonObj[0].response.body.items.item[i].fcstValue;
-                            j = j + 1;
-                        }
-                    }
-                    var rain6 = [];
-                    /* = jsonObj[0].response.body.items.item[11].fcstValue;*/
-                    for (var i = 0, j = 0; i < jsonObj[0].response.body.items.item.length; i++) {
-                        if (jsonObj[0].response.body.items.item[i].category === 'R06') {
-                            rain6[j] = (jsonObj[0].response.body.items.item[i].fcstValue) / 2;
-                            j = j + 1;
-                            rain6[j] = (jsonObj[0].response.body.items.item[i].fcstValue) / 2;
-                            j = j + 1;
-                        }
-                    }
-                    myLineChart.data.datasets[0].data = rain6; //그래프 값 바꾸기
-                    myLineChart.data.datasets[1].data = rainPercentage;
-                    console.log(rainPercentage + ',' + rain6);
-                    //$('#rainPer6').html('강수확률 : '+ rainPercentage+'%'+'<br>'+'6시간강수량 : '+rain6+'mm');
-                    $.ajax({
-                        url: 'http://localhost:3000/test2',
-                        type: 'Post',
-                        cache: false,
-                        data: {
-                            'rain6': rain6,
-                            'rainPercentage': rainPercentage
-                        }
-                    }); //6시간 강수량과 강수확률을 index.js로 넘김
-                } //success func 종료
-            });
-        }
-
-        function rplLine(value) {
-            if (value != null && value != "") {
-                return value.replace(/\n/g, "\\n");
-            } else {
-                return value;
-            }
-        }
-    </script>
+    <!-- /.content-wrapper -->
 
 </div>
-<!--이라인-->
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="/login">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js">
+</script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js">
+</script>
+
+<!-- Page level plugin JavaScript-->
+<script src="vendor/chart.js/Chart.min.js">
+</script>
+<script src="vendor/datatables/jquery.dataTables.js">
+</script>
+<script src="vendor/datatables/dataTables.bootstrap4.js">
+</script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin.min.js">
+</script>
+
+<!-- Demo scripts for this page-->
+<script src="js/demo/datatables-demo.js">
+</script>
+<script src="js/demo/chart-area-demo.js">
+</script>
+<script src="js/demo/chart-bar-demo.js">
+</script>
+<script type="text/javascript">
+    getLocation();
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(locationSuccess, locationError, geo_options);
+        } else {
+            console.log("지오 로케이션 없음")
+        }
+    };
+
+    // getLocation
+
+    function locationSuccess(p) {
+        var latitude = p.coords.latitude,
+            longitude = p.coords.longitude;
+        var rs = dfs_xy_conv("toXY", latitude, longitude);
+        // 위도/경도 -> 기상청 좌표x / 좌표 y 변환
+        realTimeWeather(rs.nx, rs.ny);
+        realTimeWeather2(rs.nx, rs.ny);
+        console.log(latitude, longitude);
+    }
+    // locationSuccess
+
+    function locationError(error) {
+        var errorTypes = {
+            0: "error",
+            1: "Not allowed",
+            2: "Unable to track location",
+            3: "Response timeout"
+        };
+        var errorMsg = errorTypes[error.code];
+        console.log(errorMsg)
+    }
+
+    // locationError
+
+    var geo_options = {
+        enableHighAccuracy: true,
+        maximumAge: 30000,
+        timeout: 27000
+    };
+    // geo_options
+
+    // LCC DFS 좌표변환을 위한 기초 자료
+    //
+    var RE = 6371.00877; // 지구 반경(km)
+    var GRID = 5.0; // 격자 간격(km)
+    var SLAT1 = 30.0; // 투영 위도1(degree)
+    var SLAT2 = 60.0; // 투영 위도2(degree)
+    var OLON = 126.0; // 기준점 경도(degree)
+    var OLAT = 38.0; // 기준점 위도(degree)
+    var XO = 43; // 기준점 X좌표(GRID)
+    var YO = 136; // 기1준점 Y좌표(GRID)
+    //
+    // LCC DFS 좌표변환 ( code : "toXY"(위경도->좌표, v1:위도, v2:경도), "toLL"(좌표->위경도,v1:x, v2:y) )
+    //
+
+    console.log(myLineChart.data.datasets[0].data);
+
+    function dfs_xy_conv(code, v1, v2) {
+        var DEGRAD = Math.PI / 180.0;
+        var RADDEG = 180.0 / Math.PI;
+
+        var re = RE / GRID;
+        var slat1 = SLAT1 * DEGRAD;
+        var slat2 = SLAT2 * DEGRAD;
+        var olon = OLON * DEGRAD;
+        var olat = OLAT * DEGRAD;
+
+        var sn = Math.tan(Math.PI * 0.25 + slat2 * 0.5) / Math.tan(Math.PI * 0.25 + slat1 * 0.5);
+        sn = Math.log(Math.cos(slat1) / Math.cos(slat2)) / Math.log(sn);
+        var sf = Math.tan(Math.PI * 0.25 + slat1 * 0.5);
+        sf = Math.pow(sf, sn) * Math.cos(slat1) / sn;
+        var ro = Math.tan(Math.PI * 0.25 + olat * 0.5);
+        ro = re * sf / Math.pow(ro, sn);
+        var rs = {};
+        if (code == "toXY") {
+
+            rs['lat'] = v1;
+            rs['lng'] = v2;
+            var ra = Math.tan(Math.PI * 0.25 + (v1) * DEGRAD * 0.5);
+            ra = re * sf / Math.pow(ra, sn);
+            var theta = v2 * DEGRAD - olon;
+            if (theta > Math.PI) theta -= 2.0 * Math.PI;
+            if (theta < -Math.PI) theta += 2.0 * Math.PI;
+            theta *= sn;
+            rs['nx'] = Math.floor(ra * Math.sin(theta) + XO + 0.5);
+            rs['ny'] = Math.floor(ro - ra * Math.cos(theta) + YO + 0.5);
+        } else {
+            rs['nx'] = v1;
+            rs['ny'] = v2;
+            var xn = v1 - XO;
+            var yn = ro - v2 + YO;
+            ra = Math.sqrt(xn * xn + yn * yn);
+            if (sn < 0.0) -ra;
+            var alat = Math.pow((re * sf / ra), (1.0 / sn));
+            alat = 2.0 * Math.atan(alat) - Math.PI * 0.5;
+
+            if (Math.abs(xn) <= 0.0) {
+                theta = 0.0;
+            } else {
+                if (Math.abs(yn) <= 0.0) {
+                    theta = Math.PI * 0.5;
+                    if (xn < 0.0) -theta;
+                } else theta = Math.atan2(xn, yn);
+            }
+            var alon = theta / sn + olon;
+            rs['lat'] = alat * RADDEG;
+            rs['lng'] = alon * RADDEG;
+        }
+        return rs;
+    }
+
+    // dfs_xy_conv
+
+
+    function realTimeWeather(nx, ny) {
+        console.log(nx + ',', ny);
+        var today = new Date();
+        var week = new Array('일', '월', '화', '수', '목', '금', '토');
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        $('#date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일" +" 이정민님의 종합 위험도 & 예측");
+        //alert(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
+        /*
+         * 기상청 30분마다 발표
+         * 30분보다 작으면, 한시간 전 hours 값
+         */
+        if (minutes < 30) {
+            hours = hours - 1;
+            if (hours < 0) {
+                // 자정 이전은 전날로 계산
+                today.setDate(today.getDate() - 1);
+                day = today.getDate();
+                month = today.getMonth() + 1;
+                year = today.getFullYear();
+                hours = 23;
+            }
+        }
+
+        if(minutes>=30&&minutes<=40){
+            hours = hours-1;
+        }
+        /* example
+         * 9시 -> 09시 변경 필요
+         */
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (day < 10) {
+            day = '0' + day;
+        }
+        today = year + "" + month + "" + day;
+        /* 좌표 */
+        /*var _nx = 98,//x좌표,
+            _ny = 75,//y좌표,*/
+        var apikey = "PG8sCezIEVyAJJCkSMeINV40rmHpB%2F32NSAIzyM4L2%2FPjjS7pFcDSNCWdlcZ17zgNv4pQm7UPMcppuYCUj30%2Bw%3D%3D",
+            ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastGrib";
+        ForecastGribURL += "?ServiceKey=" + apikey;
+        ForecastGribURL += "&base_date=" + today;
+        ForecastGribURL += "&base_time=" + hours + "00";
+        ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
+        ForecastGribURL += "&pageNo=1&numOfRows=7";
+        ForecastGribURL += "&_type=json";
+        console.log(ForecastGribURL);
+        $.ajax({
+            url: ForecastGribURL,
+            type: 'GET',
+            cache: false
+            // ,dataType:'json'
+            ,
+            error: function (request, error) {
+                console.log(arguments);
+                alert("Cant do because:" + error);
+            },
+            success: function (data, textStatus, jqXHR) {
+                //alert("Done!")
+                var myXML = rplLine(jqXHR.responseText);
+                var result = myXML;
+                //console.log(result);
+                var jsonObj = $.parseJSON('[' + result + ']');
+                var rainState = jsonObj[0].response.body.items.item[1].obsrValue;
+                var rain = jsonObj[0].response.body.items.item[3].obsrValue;
+                var sky = jsonObj[0].response.body.items.item[4].obsrValue;
+                var temperature = jsonObj[0].response.body.items.item[5].obsrValue;
+                var weather;
+                $('#temperature').html(temperature.toFixed(1) + " ℃");
+                $('#RN1').html("시간당강수량" + '<h2>' + rain + "mm");
+                if (rainState != 0) {
+                    switch (rain_state) {
+                        case 1:
+                            weather = '비';
+                            $('#weatherState').html("현재날씨" + '<br>' + "<h2>비" + '<br>' + temperature.toFixed(1) + " ℃");
+                            break;
+                        case 2:
+                            weather = '비/눈';
+                            $('#weatherState').html("현재날씨" + '<br>' + "<h2>비/눈</h1>" + '<br>' + temperature.toFixed(1) + " ℃");
+                            break;
+                        case 3:
+                            weather = '눈';
+                            $('#weatherState').html("현재날씨" + '<br>' + "<h2>눈" + '<br>' + temperature.toFixed(1) + " ℃");
+                            break;
+                    }
+                } else {
+                    switch (sky) {
+                        case 1:
+                            weather = '맑음';
+                            $('#weatherState').html("현재날씨" + '<br>' + "<h2>맑음" + '<br>' + temperature.toFixed(1) + " ℃");
+                            break;
+                        case 2:
+                            weather = '구름조금';
+                            $('#weatherState').html("현재날씨" + '<br>' + "<h2>구름조금" + '<br>' + temperature.toFixed(1) + " ℃");
+                            break;
+                        case 3:
+                            weather = '구름많음';
+                            $('#weatherState').html("현재날씨" + '<br>' + "<h2>구름많음 " + '<br>' + temperature.toFixed(1) + " ℃");
+                            break;
+                        case 4:
+                            weather = '흐림';
+                            $('#weatherState').html("현재날씨" + '<br>' + "<h2>흐림" + '<br>' + temperature.toFixed(1) + " ℃");
+                            break;
+                    }
+                } //if 종료
+                $.ajax({
+                    url: 'http://localhost:3000/test',
+                    type: 'Post',
+                    cache: false,
+                    data: {
+                        'rain': rain,
+                        'weather': weather,
+                        'temperature': temperature
+                    }
+                });
+            } //success func 종료
+        });
+    }
+
+    function realTimeWeather2(nx, ny) {
+        //console.log(nx+','+ny);
+        var today = new Date();
+        var week = new Array('일', '월', '화', '수', '목', '금', '토');
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        $('.weather-date').html(month + "월 " + day + "일 " + week[today.getDay()] + "요일");
+        /*
+         * 기상청 30분마다 발표
+         * 30분보다 작으면, 한시간 전 hours 값
+         */
+        day = day - 1;
+        hours = 23;
+
+        /* example
+         * 9시 -> 09시 변경 필요
+         */
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (day < 10) {
+            day = '0' + day;
+        }
+        today = year + "" + month + "" + day;
+        /* 좌표 */
+        /*var _nx = 98,//x좌표,
+            _ny = 75,//y좌표,*/
+        var apikey = "PG8sCezIEVyAJJCkSMeINV40rmHpB%2F32NSAIzyM4L2%2FPjjS7pFcDSNCWdlcZ17zgNv4pQm7UPMcppuYCUj30%2Bw%3D%3D",
+            ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
+        ForecastGribURL += "?ServiceKey=" + apikey;
+        ForecastGribURL += "&base_date=" + today;
+        ForecastGribURL += "&base_time=" + hours + "00";
+        ForecastGribURL += "&nx=" + nx + "&ny=" + ny;
+        ForecastGribURL += "&pageNo=1&numOfRows=82";
+        ForecastGribURL += "&_type=json";
+        console.log(ForecastGribURL);
+        $.ajax({
+            url: ForecastGribURL,
+            type: 'GET',
+            cache: false
+            // ,dataType:'json'
+            ,
+            error: function (request, error) {
+                console.log(arguments);
+                alert("Cant do because:" + error);
+            },
+            success: function (data, textStatus, jqXHR) {
+                //alert("Done!")
+                var myXML = rplLine(jqXHR.responseText);
+                var result = myXML;
+                /*console.log(result);*/
+                var jsonObj = $.parseJSON('[' + result + ']');
+                var rainPercentage = [];
+                /* = jsonObj[0].response.body.items.item[9].fcstValue;*/
+                for (var i = 0, j = 0; i < jsonObj[0].response.body.items.item.length; i++) {
+                    if (jsonObj[0].response.body.items.item[i].category == 'POP') {
+                        rainPercentage[j] = jsonObj[0].response.body.items.item[i].fcstValue;
+                        j = j + 1;
+                    }
+                }
+                var rain6 = [];
+                /* = jsonObj[0].response.body.items.item[11].fcstValue;*/
+                for (var i = 0, j = 0; i < jsonObj[0].response.body.items.item.length; i++) {
+                    if (jsonObj[0].response.body.items.item[i].category === 'R06') {
+                        rain6[j] = (jsonObj[0].response.body.items.item[i].fcstValue) / 2;
+                        j = j + 1;
+                        rain6[j] = (jsonObj[0].response.body.items.item[i].fcstValue) / 2;
+                        j = j + 1;
+                    }
+                }
+                myLineChart.data.datasets[0].data = rain6; //그래프 값 바꾸기
+                myLineChart.data.datasets[1].data = rainPercentage;
+                console.log(rainPercentage + ',' + rain6);
+                //$('#rainPer6').html('강수확률 : '+ rainPercentage+'%'+'<br>'+'6시간강수량 : '+rain6+'mm');
+                $.ajax({
+                    url: 'http://localhost:3000/test2',
+                    type: 'Post',
+                    cache: false,
+                    data: {
+                        'rain6': rain6,
+                        'rainPercentage': rainPercentage
+                    }
+                }); //6시간 강수량과 강수확률을 index.js로 넘김
+            } //success func 종료
+        });
+    }
+
+    function rplLine(value) {
+        if (value != null && value != "") {
+            return value.replace(/\n/g, "\\n");
+        } else {
+            return value;
+        }
+    }
+</script>
+
 </body>
 
 </html>
-
