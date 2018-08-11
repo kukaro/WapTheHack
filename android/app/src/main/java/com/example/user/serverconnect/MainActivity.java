@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            socket = IO.socket("http://10.0.100.98:8801");
+            socket = IO.socket("http://www.theceres.net:8801");
             socket.connect();
             socket.on(Socket.EVENT_CONNECT, (Object... objects) -> {
                 JsonObject preJsonObject = new JsonObject();

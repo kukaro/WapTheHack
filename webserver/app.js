@@ -47,10 +47,10 @@ app.use('/register', registerRouter);
 app.use('/tables', tablesRouter);
 app.use('/admin', adminRouter);
 
-app.all('/*', function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	next();
+app.all('/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
 });
 
 // catch 404 and forward to error handler
@@ -92,8 +92,15 @@ io.sockets.on('connection', function (socket) {
             console.log(inWater, outWater, gas);
             if (gas > 500)
                 socket.emit('gasOff', {'send': 'g'});
-            if (inWater > 100 || outWater > 100) {
-                io.sockets.emit('sendMsg', {'msg': 'Hello World!!'});
+            if ((300 < inWater && inWater < 500) || (300 < outWater && outWater < 500)) {
+                io.sockets.emit('sendMsg', {'msg': '1'});
+            } else if ((500 < inWater && inWater < 700) || (500 < outWater && outWater < 700)) {
+                io.sockets.emit('sendMsg', {'msg': '2'});
+            } else if ((700 < inWater && inWater < 900) || (700 < outWater && outWater < 900)) {
+                io.sockets.emit('sendMsg', {'msg': '3'});
+            } else (900 < inWater || 900 < outWater)
+            {
+                io.sockets.emit('sendMsg', {'msg': '4'});
             }
         } catch (exception) {
             console.log("라즈베리파이에서 데이터 손실");

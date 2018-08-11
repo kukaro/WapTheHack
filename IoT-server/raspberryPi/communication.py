@@ -31,7 +31,7 @@ def turn_off_gas(*args):
     ser.write(letter.encode('ascii'))
 
 
-with SocketIO('10.0.100.98', 8801) as socketIO:
+with SocketIO('www.theceres.net', 8801) as socketIO:
     socketIO.on('gasOff', turn_off_gas)
     try:
         while 1:
