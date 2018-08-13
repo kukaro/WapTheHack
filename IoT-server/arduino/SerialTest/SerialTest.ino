@@ -34,6 +34,7 @@ void loop() {
     if(income=='l'){
       income = 'x';
       digitalWrite(lampLedPin, LOW);
+      digitalWrite(tvLedPin, LOW);
     }
   }
   

@@ -70,7 +70,7 @@ public class MyService extends Service {
                     Log.e("MyService", "onStartCommand: " + MainActivity.warningNum);
                     if (MainActivity.warningNum == 3) {
                         try {
-                            show_3();
+                            show_4();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -83,7 +83,7 @@ public class MyService extends Service {
                     }
                     try {
                         Log.e("DEBUG", "onStartCommand: " + "쓰레드 실행중");
-                        Thread.sleep(20000);
+                        Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -95,28 +95,11 @@ public class MyService extends Service {
 
     private void show_1() throws IOException {
         Vibrator mVibrate = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
-
-        builder.setSmallIcon(R.drawable.ic_notifications_black_24dp);
-        builder.setContentTitle("경고 알림");
-        builder.setContentText("위험합니다");
 
         mVibrate.vibrate(2000);
 
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        builder.setContentIntent(pendingIntent);
-
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
-                R.drawable.ic_notifications_black_24dp);
-        builder.setLargeIcon(largeIcon);
-
-        builder.setColor(Color.RED);
-
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        manager.notify(1, builder.build());
 
         mp3 = MediaPlayer.create(this, R.raw.siren);
         mp3.start();
@@ -124,10 +107,9 @@ public class MyService extends Service {
 
     private void show_2() throws IOException {//보호자에게 문자 가능 메소드 추가
         Vibrator mVibrate = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
 
         String phoneNo = new String("010-8201-5102");
-        String sms = new String("ㅇㅇㅇ 님이 위험합니다 !");
+        String sms = new String("할아버지 님이 위험합니다 !");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int smspermissionResult = checkSelfPermission(CALL_PHONE);
@@ -137,24 +119,10 @@ public class MyService extends Service {
             }
         }
 
-        builder.setSmallIcon(R.drawable.ic_notifications_black_24dp);
-        builder.setContentTitle("경고 알림");
-        builder.setContentText("보호자에게 문자가 갔습니다");
         mVibrate.vibrate(2000);
 
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        builder.setContentIntent(pendingIntent);
-
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
-                R.drawable.ic_notifications_black_24dp);
-        builder.setLargeIcon(largeIcon);
-
-        builder.setColor(Color.RED);
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        manager.notify(1, builder.build());
 
         mp3 = MediaPlayer.create(this, R.raw.siren);
         mp3.start();
@@ -163,29 +131,12 @@ public class MyService extends Service {
     private void show_3() throws IOException {//전기 가스 차단하는 메소드
         Vibrator mVibrate = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
-
-        builder.setSmallIcon(R.drawable.ic_notifications_black_24dp);
-        builder.setContentTitle("경고 알림");
-        builder.setContentText("전기, 가스가 차단되었습니다");
         mVibrate.vibrate(2000);
 
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        builder.setContentIntent(pendingIntent);
-
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
-                R.drawable.ic_notifications_black_24dp);
-        builder.setLargeIcon(largeIcon);
-
-        builder.setColor(Color.RED);
         Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_NOTIFICATION);
-        builder.setSound(ringtoneUri);
-
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        manager.notify(1, builder.build());
 
         mp3 = MediaPlayer.create(this, R.raw.siren);
         mp3.start();
@@ -194,40 +145,26 @@ public class MyService extends Service {
     private void show_4() throws IOException {//자동으로 신고하는 메소드
         Vibrator mVibrate = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
-
-        builder.setSmallIcon(R.drawable.ic_notifications_black_24dp);
-        builder.setContentTitle("경고 알림");
-        builder.setContentText("119로 자동 신고되었습니다");
         mVibrate.vibrate(2000);
 
 
+        String phoneNo = new String("010-8201-5102");
+        String sms = new String("현재 경기도 남양주시 북한강로 881 에서 침수로 인한 피해가 발생했습니다. 구조 요청합니다.");
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int callpermissionResult = checkSelfPermission(CALL_PHONE);
-            if (callpermissionResult == PackageManager.PERMISSION_GRANTED) {
-                Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-8201-5102"));
-                startActivity(call);
+            int smspermissionResult = checkSelfPermission(SEND_SMS);
+            if (smspermissionResult == PackageManager.PERMISSION_GRANTED) {
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNo, null, sms, null, null);
             }
         }
 
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        builder.setContentIntent(pendingIntent);
-
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
-                R.drawable.ic_notifications_black_24dp);
-        builder.setLargeIcon(largeIcon);
-
-        builder.setColor(Color.RED);
         Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_NOTIFICATION);
-        builder.setSound(ringtoneUri);
 
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        manager.notify(1, builder.build());
-
-        mp3 = MediaPlayer.create(this, R.raw.siren);
+        mp3 = MediaPlayer.create(this, R.raw.report);
         mp3.start();
     }
 

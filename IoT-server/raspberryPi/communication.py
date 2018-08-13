@@ -4,7 +4,7 @@ import serial
 from socketIO_client_nexus import SocketIO, BaseNamespace, LoggingNamespace
 
 ser = serial.Serial(
-    port='/dev/cu.usbmodem1411',
+    port='/dev/cu.usbmodem1421',
     baudrate='9600',
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
@@ -51,7 +51,7 @@ with SocketIO('www.theceres.net', 8801) as socketIO:
                 realResponse = response.decode('utf-8')[:len(response) - 1]
                 print(realResponse)
                 dataArr = realResponse.split(" ")
-                if len(dataArr) < 3: pass
+                if len(dataArr) < 3:pass
                 inWater = dataArr[0][3:]
                 outWater = dataArr[1][3:]
                 gas = dataArr[2][3:]
